@@ -1,0 +1,6 @@
+version: "3"
+services:
+  inato:
+    build: .
+    volumes:
+      - ".:/usr/src"

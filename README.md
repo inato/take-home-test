@@ -42,8 +42,12 @@ Feel free to make any changes to the _updateValue_ method implementation and add
 
 ## Test
 
-To make sure that you will not break anything in the existing code, we added a log of the simulation in the _output.txt_ file. You can generate a new file by running the following command:
+To make sure that you will not break anything in the existing code, we added a log of the simulation in the _output.txt_ file. You can generate a new file by running one of the following commands:
 
 ```sh
 yarn start
+```
+
+```sh
+docker-compose up
 ```
