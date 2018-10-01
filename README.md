@@ -5,7 +5,7 @@
 - clone this repository (do not fork it)
 - implement the required feature
 - publish it to your github
-- send us a link
+- send us the link and tell us approximatively how much time you spent on this assignment
 
 ## Requirements
 
@@ -39,6 +39,8 @@ We have recently started a new project on a disease named "Hepatocellular carcin
 You are encouraged to refactor the existing code before adding your own, as you would do if this was a real task in real life. We strongly recommend that you write tests to help you during this process.
 
 Feel free to make any changes to the _updateValue_ method implementation and add any new code as long as everything still works correctly. However, do not alter the _Patient_ class or _patients_ property, as those are used by other pieces of the software.
+
+Please commit as frequently as possible to make the review easier.
 
 ## Test
 
