@@ -1,44 +1,38 @@
-# take-home-test
+# Inato Take-Home Test Specification
 
-## Overview
+You are a new developer in the Inato team, and your first job is to add a feature to an old existing piece of code.
 
-- clone this repository (do not fork it)
-- implement the required feature
-- publish it to your github
-- send us the link and tell us approximatively how much time you spent on this assignment
+## System specifications
 
-## Requirements
+Hi and welcome to the team. We are in the future, and Inato has extended its activities by opening a pharmacy. Your task is to add a new feature to our system so that we can begin distributing a new drug. First an introduction to our system:
 
-You are a new developer in the Inato team, and your first job is to add a feature to an existing piece of code.
-
-### Existing code
-
-The existing code computes the evolution of the value of a patient for each elapsed day in a clinical trial. Here are the basic rules of this system:
-
-- each patient has a _surgeryIn_ attribute, which denotes the number of days before the surgery (negative if the surgery is in the past)
-- each patient has a _value_ attribute, which denotes how valuable the patient is
-- at the end of each day our system lowers both attributes for every patient
+- All drugs have an `expiresIn` value which denotes the number of days we have until the item expires.
+- All drugs have a `benefit` value which denotes how powerful the drug is.
+- At the end of each day our system lowers both values for every drug
 
 But there is more:
 
-- once the surgery has been done, _value_ drops twice as fast
-- the _value_ of a patient is never negative
-- patients with the disease "Multiple sclerosis" actually increase in _value_ as time passes
-- the _value_ of a patient is never more than 50
-- patients with the disease "Pancreatic cancer" cannot be operated, and never decrease in _value_
-- patients with the disease "Chronic obstructive pulmonary disease", like patients with the disease "Multiple sclerosis", increase in _value_ as their surgery approaches; _value_ increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but _value_ drops to 0 after the surgery
+- Once the expiration date has passed, Benefit degrades twice as fast.
+- The Benefit of an item is never negative.
+- "Herbal Tea" actually increases in Benefit the older it gets,
+- The Benefit of an item is never more than 50.
+- "Magic Pill" never expires nor decreases in Benefit.
+- "Fervex", like Herbal Tea, increases in Benefit as its expiration date approaches. Benefit increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Benefit drops to 0 after the expiration date.
 
-### New feature
+We have recently signed a supplier of "Dafalgan". This requires an update to our system:
 
-We have recently started a new project on a disease named "Hepatocellular carcinoma", which has the following property:
+- "Dafalgan" degrades in Benefit twice as fast as normal drugs.
 
-- patients degrade in _value_ twice as fast as normal patients
+## Instructions
 
-### Guidelines
+- [ ] Clone this repository (do **not** fork it)
+- [ ] Implement the required feature
+- [ ] Publish it on GitHub
+- [ ] Send us the link and tell us approximatively how much time you spent on this assignment
 
 You are encouraged to refactor the existing code before adding your own, as you would do if this was a real task in real life. We strongly recommend that you write tests to help you during this process.
 
-Feel free to make any changes to the _updateValue_ method implementation and add any new code as long as everything still works correctly. However, do not alter the _Patient_ class or _patients_ property, as those are used by other pieces of the software.
+Feel free to make any changes to the `updateBenefitValue` method implementation and add any new code as long as everything still works correctly. However, do not alter the `Drug` class or `drugs` property, as those are used by other pieces of the software.
 
 Please commit as frequently as possible to make the review easier.
 

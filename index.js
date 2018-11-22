@@ -1,19 +1,19 @@
-import { Patient, ClinicalTrial } from "./trial";
+import { Drug, Pharmacy } from "./pharmacy";
 
 import fs from "fs";
 
-const patients = [
-  new Patient("Cold", 20, 30),
-  new Patient("Multiple sclerosis", 10, 5),
-  new Patient("Chronic obstructive pulmonary disease", 5, 40),
-  new Patient("Pancreatic cancer", 15, 40)
+const drugs = [
+  new Drug("Doliprane", 20, 30),
+  new Drug("Herbal Tea", 10, 5),
+  new Drug("Fervex", 5, 40),
+  new Drug("Magic Pill", 15, 40)
 ];
-const trial = new ClinicalTrial(patients);
+const trial = new Pharmacy(drugs);
 
 const log = [];
 
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  log.push(JSON.stringify(trial.updateValue()));
+  log.push(JSON.stringify(trial.updateBenefitValue()));
 }
 
 /* eslint-disable no-console */
