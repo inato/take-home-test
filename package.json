@@ -5,6 +5,10 @@
   "author": "inato",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "yarn": ">=1.7.0",
+    "node": ">=12.x"
+  },
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
