@@ -14,7 +14,7 @@ But there is more:
 
 - Once the expiration date has passed, Benefit degrades twice as fast.
 - The Benefit of an item is never negative.
-- "Herbal Tea" actually increases in Benefit the older it gets,
+- "Herbal Tea" actually increases in Benefit the older it gets. Benefit increases twice as fast after the expiration date.
 - The Benefit of an item is never more than 50.
 - "Magic Pill" never expires nor decreases in Benefit.
 - "Fervex", like Herbal Tea, increases in Benefit as its expiration date approaches. Benefit increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Benefit drops to 0 after the expiration date.
@@ -32,7 +32,7 @@ We have recently signed a supplier of "Dafalgan". This requires an update to our
 
 You are encouraged to refactor the existing code before adding your own, as you would do if this was a real task in real life. We strongly recommend that you write tests to help you during this process.
 
-Feel free to make any changes to the `updateBenefitValue` method implementation and add any new code as long as everything still works correctly. However, do not alter the `Drug` class or `drugs` property, as those are used by other pieces of the software.
+Feel free to make any changes to the `updateBenefitValue` method implementation and add any new code as long as everything still works correctly. However, do not alter the `Drug` class or `drugs` property (but you can add new methods), as those are used by other pieces of the software.
 
 Please commit as frequently as possible to make the review easier.
 
