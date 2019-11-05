@@ -36,9 +36,11 @@ Feel free to make any changes to the `updateBenefitValue` method implementation 
 
 Please commit as frequently as possible to make the review easier.
 
+If you have any questions regarding the test, don't hesitate to contact us.
+
 ## Test
 
-To make sure that you will not break anything in the existing code, we added a log of the simulation in the _output.txt_ file. You can generate a new file by running one of the following commands:
+We added a log of the simulation in the _output.txt_ file. You should rely on it to make sure that you did not introduce any regressions. You can generate a new file by running one of the following commands:
 
 ```sh
 yarn start
