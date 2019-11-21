@@ -32,13 +32,13 @@ We have recently signed a supplier of "Dafalgan". This requires an update to our
 
 You are encouraged to refactor the existing code before adding your own, as you would do if this was a real task in real life. We strongly recommend that you write tests to help you during this process.
 
-Feel free to make any changes to the `updateBenefitValue` method implementation and add any new code as long as everything still works correctly. However, do not alter the `Drug` class or `drugs` property (but you can add new methods), as those are used by other pieces of the software.
+Feel free to make any changes to the `updateBenefitValue` method implementation and add any new code as long as everything still works correctly. However, do not break the public API of the `Drug` and `Pharmacy` classes, as those are used by other pieces of the software (you can add new methods though).
 
 Please commit as frequently as possible to make the review easier.
 
 ## Test
 
-To make sure that you will not break anything in the existing code, we added a log of the simulation in the _output.txt_ file. You can generate a new file by running one of the following commands:
+To make sure that you will not break anything in the existing code, we added a log of the simulation in the _output.txt_ file. Make sure that your code is able to generate the same file. You can generate a new file by running one of the following commands:
 
 ```sh
 yarn start
