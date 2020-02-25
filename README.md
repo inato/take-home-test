@@ -27,7 +27,7 @@ We have recently signed a supplier of "Dafalgan". This requires an update to our
 
 - [ ] Clone this repository (do **not** fork it)
 - [ ] Implement the required feature
-- [ ] Publish it on GitHub
+- [ ] Publish it on your GitHub (or Gitlab, or whatever...)
 - [ ] Send us the link and tell us approximatively how much time you spent on this assignment
 
 You are encouraged to refactor the existing code before adding your own, as you would do if this was a real task in real life. We strongly recommend that you write tests to help you during this process.
