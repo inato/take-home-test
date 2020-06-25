@@ -1,6 +1,7 @@
 # Inato Take-Home Test Specification
 
 You are a new developer in the Inato team, and your first job is to add a feature to an old existing piece of code.
+We recommend spending between 30 min and 1 hour on the exercise. (Do more if you like 😇, do less if you think you've shown what you want😎)
 
 ## System specifications
 
