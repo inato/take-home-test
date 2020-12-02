@@ -4,6 +4,7 @@
   "repository": "git@github.com:inato/take-home-test.git",
   "author": "inato",
   "license": "MIT",
+  "type":"module",
   "private": true,
   "engines": {
     "yarn": ">=1.7.0",
