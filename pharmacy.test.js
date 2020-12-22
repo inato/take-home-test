@@ -73,9 +73,18 @@ describe('Pharmacy', () => {
     expectUpdatedPharmacy(updatedBenefitValue, expectedMagicPill)
   })
 
-  it('should increase Fervex benefit by two between 10 days prior to expiration and 5 days prior to expiration', () => {
+  it('should increase Fervex benefit by two between 10 and 5 days prior to expiration', () => {
     const fervex = new Drug('Fervex', 10, 42)
     const expectedFervex = new Drug('Fervex', 9, 44)
+
+    const updatedBenefitValue = new Pharmacy([fervex]).updateBenefitValue()
+
+    expectUpdatedPharmacy(updatedBenefitValue, expectedFervex)
+  })
+
+  it('should increase Fervex benefit by three 5 days prior to expiration', () => {
+    const fervex = new Drug('Fervex', 5, 42)
+    const expectedFervex = new Drug('Fervex', 4, 45)
 
     const updatedBenefitValue = new Pharmacy([fervex]).updateBenefitValue()
 

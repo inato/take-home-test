@@ -53,6 +53,7 @@ export class Pharmacy {
   increaseByFervexSpecificRules(fervex) {
     if (fervex.expiresIn > 10) return 1
     if (fervex.expiresIn <= 10 && fervex.expiresIn > 5) return 2
+    if (fervex.expiresIn <= 5) return 3
     if (this.isExpired(fervex)) return this.BENEFIT_MINIMUM
   }
 
