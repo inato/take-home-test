@@ -49,4 +49,13 @@ describe('Pharmacy', () => {
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedHerbalTea)
   })
+
+  it('should not give a benefit higher than 50', () => {
+    const herbalTea = new Drug('Herbal Tea', 10, 50)
+    const expectedHerbalTea = new Drug('Herbal Tea', 9, 50)
+
+    const updatedBenefitValue = new Pharmacy([herbalTea]).updateBenefitValue()
+
+    expectUpdatedPharmacy(updatedBenefitValue, expectedHerbalTea)
+  })
 })

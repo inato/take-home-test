@@ -7,6 +7,8 @@ export class Drug {
 }
 
 export class Pharmacy {
+  BENEFIT_MAXIMUM = 50
+  BENEFIT_MINIMUM = 0
   constructor(drugs = []) {
     this.drugs = drugs
   }
@@ -28,7 +30,8 @@ export class Pharmacy {
   }
 
   decreaseBenefit(drug) {
-    if (drug.benefit > 0) drug.benefit -= this.doubleRateWhenExpired(drug)
+    if (drug.benefit > this.BENEFIT_MINIMUM)
+      drug.benefit -= this.doubleRateWhenExpired(drug)
   }
 
   doubleRateWhenExpired(drug) {
@@ -36,7 +39,8 @@ export class Pharmacy {
   }
 
   increaseBenefit(drug) {
-    drug.benefit += this.doubleRateWhenExpired(drug)
+    if (drug.benefit < this.BENEFIT_MAXIMUM)
+      drug.benefit += this.doubleRateWhenExpired(drug)
   }
 
   isExpired(drug) {
