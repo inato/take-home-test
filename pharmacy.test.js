@@ -40,4 +40,13 @@ describe('Pharmacy', () => {
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedHerbalTea)
   })
+
+  it('should increase benefit for "Herbal Tea" twice as fast when expired', () => {
+    const herbalTea = new Drug('Herbal Tea', 0, 8)
+    const expectedHerbalTea = new Drug('Herbal Tea', -1, 10)
+
+    const updatedBenefitValue = new Pharmacy([herbalTea]).updateBenefitValue()
+
+    expectUpdatedPharmacy(updatedBenefitValue, expectedHerbalTea)
+  })
 })

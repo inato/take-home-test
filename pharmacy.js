@@ -23,8 +23,20 @@ export class Pharmacy {
   }
 
   updateBenefit(drug) {
-    if (drug.name === 'Herbal Tea') drug.benefit++
-    else if (drug.benefit > 0) drug.benefit -= this.isExpired(drug) ? 2 : 1
+    if (drug.name === 'Herbal Tea') this.increaseBenefit(drug)
+    else this.decreaseBenefit(drug)
+  }
+
+  decreaseBenefit(drug) {
+    if (drug.benefit > 0) drug.benefit -= this.doubleRateWhenExpired(drug)
+  }
+
+  doubleRateWhenExpired(drug) {
+    return this.isExpired(drug) ? 2 : 1
+  }
+
+  increaseBenefit(drug) {
+    drug.benefit += this.doubleRateWhenExpired(drug)
   }
 
   isExpired(drug) {
