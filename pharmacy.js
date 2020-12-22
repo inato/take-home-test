@@ -9,6 +9,7 @@ export class Drug {
 export class Pharmacy {
   BENEFIT_MAXIMUM = 50
   BENEFIT_MINIMUM = 0
+
   constructor(drugs = []) {
     this.drugs = drugs
   }
