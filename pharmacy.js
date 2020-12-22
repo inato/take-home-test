@@ -28,7 +28,8 @@ export class Pharmacy {
   }
 
   updateBenefit(drug) {
-    if (drug.name === 'Herbal Tea') this.increaseBenefit(drug)
+    if (drug.name === 'Herbal Tea' || drug.name === 'Fervex')
+      this.increaseBenefit(drug)
     else this.decreaseBenefit(drug)
   }
 
@@ -37,13 +38,22 @@ export class Pharmacy {
       drug.benefit -= this.doubleRateWhenExpired(drug)
   }
 
+  increaseBenefit(drug) {
+    if (drug.benefit < this.BENEFIT_MAXIMUM) {
+      drug.name === 'Fervex'
+        ? (drug.benefit += this.increaseByFervexSpecificRules(drug))
+        : (drug.benefit += this.doubleRateWhenExpired(drug))
+    }
+  }
+
   doubleRateWhenExpired(drug) {
     return this.isExpired(drug) ? 2 : 1
   }
 
-  increaseBenefit(drug) {
-    if (drug.benefit < this.BENEFIT_MAXIMUM)
-      drug.benefit += this.doubleRateWhenExpired(drug)
+  increaseByFervexSpecificRules(fervex) {
+    if (fervex.expiresIn > 10) return 1
+    if (fervex.expiresIn <= 10 && fervex.expiresIn > 5) return 2
+    if (this.isExpired(fervex)) return this.BENEFIT_MINIMUM
   }
 
   isExpired(drug) {
