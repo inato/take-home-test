@@ -90,4 +90,32 @@ describe('Pharmacy', () => {
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedFervex)
   })
+
+  it('should drop Fervex benefit to 0 after the expiration date', () => {
+    const fervex = new Drug('Fervex', 0, 42)
+    const expectedFervex = new Drug('Fervex', -1, 0)
+
+    const updatedBenefitValue = new Pharmacy([fervex]).updateBenefitValue()
+
+    expectUpdatedPharmacy(updatedBenefitValue, expectedFervex)
+  })
+
+  it.each([
+    [22, 42, 21, 40],
+    [0, 42, -1, 38],
+  ])(
+    'should degrades Dafalgan twice as fast as normal drugs',
+    (initialExpiresIn, initialBenefit, expectedExpiresIn, expectedBenefit) => {
+      const dafalgan = new Drug('Dafalgan', initialExpiresIn, initialBenefit)
+      const expectedDafalgan = new Drug(
+        'Dafalgan',
+        expectedExpiresIn,
+        expectedBenefit
+      )
+
+      const updatedBenefitValue = new Pharmacy([dafalgan]).updateBenefitValue()
+
+      expectUpdatedPharmacy(updatedBenefitValue, expectedDafalgan)
+    }
+  )
 })

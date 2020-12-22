@@ -20,8 +20,6 @@ export class Pharmacy {
         this.updateBenefit(drug)
         this.updateExpiration(drug)
       }
-      /*this.firstUpdateRules(drug)
-      this.secondUpdateRules(drug)*/
     })
 
     return this.drugs
@@ -31,6 +29,9 @@ export class Pharmacy {
     if (drug.name === 'Herbal Tea' || drug.name === 'Fervex')
       this.increaseBenefit(drug)
     else this.decreaseBenefit(drug)
+
+    if (drug.name === 'Fervex' && this.isExpired(drug))
+      this.dropBenefitValueToZero(drug)
   }
 
   decreaseBenefit(drug) {
@@ -46,8 +47,16 @@ export class Pharmacy {
     }
   }
 
+  dropBenefitValueToZero(drug) {
+    drug.benefit = this.BENEFIT_MINIMUM
+  }
+
   doubleRateWhenExpired(drug) {
-    return this.isExpired(drug) ? 2 : 1
+    let coefficient = 1
+
+    if (drug.name === 'Dafalgan') coefficient = 2
+
+    return this.isExpired(drug) ? coefficient * 2 : coefficient
   }
 
   increaseByFervexSpecificRules(fervex) {
@@ -63,37 +72,5 @@ export class Pharmacy {
 
   updateExpiration(drug) {
     if (drug.name !== 'Magic Pill') drug.expiresIn--
-  }
-
-  secondUpdateRules(drug) {
-    if (
-      this.isExpired(drug) &&
-      drug.name !== 'Herbal Tea' &&
-      drug.name !== 'Fervex' &&
-      drug.benefit > 0
-    ) {
-      drug.name !== 'Magic Pill' ? drug.benefit-- : (drug.benefit = 0)
-    } else {
-      if (drug.benefit < 50) drug.benefit++
-    }
-  }
-
-  firstUpdateRules(drug) {
-    if (
-      drug.name !== 'Herbal Tea' &&
-      drug.name !== 'Fervex' &&
-      drug.benefit > 0 &&
-      drug.name !== 'Magic Pill'
-    )
-      drug.benefit--
-    else {
-      if (drug.benefit < 50) {
-        drug.benefit++
-        if (drug.name === 'Fervex' && drug.expiresIn < 11 && drug.benefit < 50)
-          drug.benefit++
-
-        if (drug.expiresIn < 6 && drug.benefit < 50) drug.benefit++
-      }
-    }
   }
 }
