@@ -58,7 +58,7 @@ describe('Pharmacy', () => {
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedHerbalTea)
   })
-  /*
+
   it('should never increase nor decrease values for "Magic Pill"', () => {
     const magicPill = new Drug('Magic Pill', 10, 42)
     const expectedMagicPill = new Drug('Magic Pill', 10, 42)
@@ -66,5 +66,5 @@ describe('Pharmacy', () => {
     const updatedBenefitValue = new Pharmacy([magicPill]).updateBenefitValue()
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedMagicPill)
-  })*/
+  })
 })

@@ -16,8 +16,10 @@ export class Pharmacy {
 
   updateBenefitValue() {
     this.drugs.forEach((drug) => {
-      this.updateBenefit(drug)
-      this.updateExpiration(drug)
+      if (drug.name !== 'Magic Pill') {
+        this.updateBenefit(drug)
+        this.updateExpiration(drug)
+      }
       /*this.firstUpdateRules(drug)
       this.secondUpdateRules(drug)*/
     })
