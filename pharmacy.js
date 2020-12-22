@@ -23,7 +23,12 @@ export class Pharmacy {
   }
 
   updateBenefit(drug) {
-    if (drug.benefit > 0) drug.benefit -= drug.expiresIn <= 0 ? 2 : 1
+    if (drug.name === 'Herbal Tea') drug.benefit++
+    else if (drug.benefit > 0) drug.benefit -= this.isExpired(drug) ? 2 : 1
+  }
+
+  isExpired(drug) {
+    return drug.expiresIn <= 0
   }
 
   updateExpiration(drug) {
@@ -41,10 +46,6 @@ export class Pharmacy {
     } else {
       if (drug.benefit < 50) drug.benefit++
     }
-  }
-
-  isExpired(drug) {
-    return drug.expiresIn < 0
   }
 
   firstUpdateRules(drug) {

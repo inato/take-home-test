@@ -23,12 +23,21 @@ describe('Pharmacy', () => {
     expectUpdatedPharmacy(updatedBenefitValue, expectedTestDrug)
   })
 
-  it('should not get negative benefit', () => {
+  it('should not give negative benefit', () => {
     const testDrug = new Drug('test', 5, 0)
     const expectedTestDrug = new Drug('test', 4, 0)
 
     const updatedBenefitValue = new Pharmacy([testDrug]).updateBenefitValue()
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedTestDrug)
+  })
+
+  it('should increase benefit for "Herbal Tea"', () => {
+    const herbalTea = new Drug('Herbal Tea', 5, 8)
+    const expectedHerbalTea = new Drug('Herbal Tea', 4, 9)
+
+    const updatedBenefitValue = new Pharmacy([herbalTea]).updateBenefitValue()
+
+    expectUpdatedPharmacy(updatedBenefitValue, expectedHerbalTea)
   })
 })
