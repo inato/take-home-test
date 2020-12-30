@@ -4,6 +4,10 @@ export class Drug {
     this.expiresIn = expiresIn
     this.benefit = benefit
   }
+
+  isExpired() {
+    return this.expiresIn <= 0
+  }
 }
 
 export class Pharmacy {
@@ -30,7 +34,7 @@ export class Pharmacy {
       this.increaseBenefit(drug)
     else this.decreaseBenefit(drug)
 
-    if (drug.name === 'Fervex' && this.isExpired(drug))
+    if (drug.name === 'Fervex' && drug.isExpired())
       this.dropBenefitValueToZero(drug)
   }
 
@@ -56,18 +60,14 @@ export class Pharmacy {
 
     if (drug.name === 'Dafalgan') coefficient = 2
 
-    return this.isExpired(drug) ? coefficient * 2 : coefficient
+    return drug.isExpired() ? coefficient * 2 : coefficient
   }
 
   increaseByFervexSpecificRules(fervex) {
     if (fervex.expiresIn > 10) return 1
     if (fervex.expiresIn <= 10 && fervex.expiresIn > 5) return 2
     if (fervex.expiresIn <= 5) return 3
-    if (this.isExpired(fervex)) return this.BENEFIT_MINIMUM
-  }
-
-  isExpired(drug) {
-    return drug.expiresIn <= 0
+    if (fervex.isExpired()) return this.BENEFIT_MINIMUM
   }
 
   updateExpiration(drug) {
