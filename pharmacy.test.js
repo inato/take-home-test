@@ -9,16 +9,18 @@ describe('Pharmacy', () => {
     const testDrug = new Drug('test', 2, 3)
     const expectedTestDrug = new Drug('test', 1, 2)
 
-    const updatedBenefitValue = new Pharmacy([testDrug]).updateBenefitValue()
+    const updatedBenefits = new Pharmacy([testDrug]).updatePharmacyBenefits()
 
-    expectUpdatedPharmacy(updatedBenefitValue, expectedTestDrug)
+    expectUpdatedPharmacy(updatedBenefits, expectedTestDrug)
   })
 
   it('should decrease the benefit twice as fast when expired', () => {
     const testDrug = new Drug('test', 0, 6)
     const expectedTestDrug = new Drug('test', -1, 4)
 
-    const updatedBenefitValue = new Pharmacy([testDrug]).updateBenefitValue()
+    const updatedBenefitValue = new Pharmacy([
+      testDrug,
+    ]).updatePharmacyBenefits()
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedTestDrug)
   })
@@ -27,7 +29,9 @@ describe('Pharmacy', () => {
     const testDrug = new Drug('test', 5, 0)
     const expectedTestDrug = new Drug('test', 4, 0)
 
-    const updatedBenefitValue = new Pharmacy([testDrug]).updateBenefitValue()
+    const updatedBenefitValue = new Pharmacy([
+      testDrug,
+    ]).updatePharmacyBenefits()
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedTestDrug)
   })
@@ -40,7 +44,7 @@ describe('Pharmacy', () => {
 
       const updatedBenefitValue = new Pharmacy([
         increasingDrug,
-      ]).updateBenefitValue()
+      ]).updatePharmacyBenefits()
 
       expectUpdatedPharmacy(updatedBenefitValue, expectedIncreasingDrug)
     }
@@ -50,7 +54,9 @@ describe('Pharmacy', () => {
     const herbalTea = new Drug('Herbal Tea', 0, 8)
     const expectedHerbalTea = new Drug('Herbal Tea', -1, 10)
 
-    const updatedBenefitValue = new Pharmacy([herbalTea]).updateBenefitValue()
+    const updatedBenefitValue = new Pharmacy([
+      herbalTea,
+    ]).updatePharmacyBenefits()
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedHerbalTea)
   })
@@ -59,7 +65,9 @@ describe('Pharmacy', () => {
     const herbalTea = new Drug('Herbal Tea', 10, 50)
     const expectedHerbalTea = new Drug('Herbal Tea', 9, 50)
 
-    const updatedBenefitValue = new Pharmacy([herbalTea]).updateBenefitValue()
+    const updatedBenefitValue = new Pharmacy([
+      herbalTea,
+    ]).updatePharmacyBenefits()
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedHerbalTea)
   })
@@ -68,7 +76,9 @@ describe('Pharmacy', () => {
     const magicPill = new Drug('Magic Pill', 10, 42)
     const expectedMagicPill = new Drug('Magic Pill', 10, 42)
 
-    const updatedBenefitValue = new Pharmacy([magicPill]).updateBenefitValue()
+    const updatedBenefitValue = new Pharmacy([
+      magicPill,
+    ]).updatePharmacyBenefits()
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedMagicPill)
   })
@@ -77,7 +87,7 @@ describe('Pharmacy', () => {
     const fervex = new Drug('Fervex', 10, 42)
     const expectedFervex = new Drug('Fervex', 9, 44)
 
-    const updatedBenefitValue = new Pharmacy([fervex]).updateBenefitValue()
+    const updatedBenefitValue = new Pharmacy([fervex]).updatePharmacyBenefits()
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedFervex)
   })
@@ -86,7 +96,7 @@ describe('Pharmacy', () => {
     const fervex = new Drug('Fervex', 5, 42)
     const expectedFervex = new Drug('Fervex', 4, 45)
 
-    const updatedBenefitValue = new Pharmacy([fervex]).updateBenefitValue()
+    const updatedBenefitValue = new Pharmacy([fervex]).updatePharmacyBenefits()
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedFervex)
   })
@@ -95,7 +105,7 @@ describe('Pharmacy', () => {
     const fervex = new Drug('Fervex', 0, 42)
     const expectedFervex = new Drug('Fervex', -1, 0)
 
-    const updatedBenefitValue = new Pharmacy([fervex]).updateBenefitValue()
+    const updatedBenefitValue = new Pharmacy([fervex]).updatePharmacyBenefits()
 
     expectUpdatedPharmacy(updatedBenefitValue, expectedFervex)
   })
@@ -113,7 +123,9 @@ describe('Pharmacy', () => {
         expectedBenefit
       )
 
-      const updatedBenefitValue = new Pharmacy([dafalgan]).updateBenefitValue()
+      const updatedBenefitValue = new Pharmacy([
+        dafalgan,
+      ]).updatePharmacyBenefits()
 
       expectUpdatedPharmacy(updatedBenefitValue, expectedDafalgan)
     }
