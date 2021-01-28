@@ -10,57 +10,103 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+/**
+ * Check benefit limit.
+ * @param {object} drug - This object contains benefit.
+ * @returns {object} The modified drug with benefit.
+ */
+  checkBenefit(drug) {
+    if(drug.benefit < 0) 
+      drug.benefit = 0;
+    else if (drug.benefit > 50)
+      drug.benefit = 50;
+    return drug.benefit;
+  }
+/**
+ * Moddify benefit attribute for Dafalgan
+ * @param {object} drug - This object contains benefit.
+ * @returns {object} The modified drug with benefit.
+ */
+  dafalganProcess(drug) {
+    if (drug.expiresIn <= 0) {
+      drug.benefit = drug.benefit - 4;
+    }
+    else
+      drug.benefit = drug.benefit - 2;
+    return drug;
+  }
+/**
+ * Moddify benefit attribute for Fervex
+ * @param {object} drug - This object contains benefit.
+ * @returns {object} The modified drug with benefit.
+ */
+  fervexProcess(drug) {
+    if (drug.expiresIn > 10) 
+      drug.benefit = drug.benefit + 1;
+    else if (drug.expiresIn > 5 && drug.expiresIn <= 10)
+      drug.benefit = drug.benefit + 2;
+    else if (drug.expiresIn > 0 && drug.expiresIn <= 5)
+      drug.benefit = drug.benefit + 3;
+    else if (drug.expiresIn <= 0)
+      drug.benefit = 0;
+    return drug;
+  }
+/**
+ * Moddify benefit attribute for Herbal Tea.
+ * @param {object} drug - This object contains benefit.
+ * @returns {object} The modified drug with benefit.
+ */
+  herbalTeaProcess(drug){
+    if (drug.expiresIn <= 0) {
+      drug.benefit = drug.benefit + 2;
+    }
+    else
+      drug.benefit = drug.benefit + 1;
+    return drug
+  }
+/**
+ * Moddify benefit attribute for default drug.
+ * @param {object} drug This object contains benefit.
+ * @returns {object} The modified drug with benefit.
+ */
+  defautDrugProcess(drug) {
+    if (drug.expiresIn <= 0) {
+      drug.benefit = drug.benefit - 2;
+    }
+    else 
+      drug.benefit = drug.benefit - 1;
+    return drug;
+  }
+/**
+ * Update benefit attribute for all drugs.
+ * @returns {list} The updated drugs list with benefit.
+ */
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
-      if (
-        this.drugs[i].name != "Herbal Tea" &&
-        this.drugs[i].name != "Fervex"
-      ) {
-        if (this.drugs[i].benefit > 0) {
-          if (this.drugs[i].name != "Magic Pill") {
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
-          }
-        }
-      } else {
-        if (this.drugs[i].benefit < 50) {
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          if (this.drugs[i].name == "Fervex") {
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.drugs[i].name != "Magic Pill") {
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-      }
-      if (this.drugs[i].expiresIn < 0) {
-        if (this.drugs[i].name != "Herbal Tea") {
-          if (this.drugs[i].name != "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") {
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
-              }
-            }
-          } else {
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) {
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          }
-        }
-      }
-    }
+      switch(this.drugs[i].name){
 
+        case('Dafalgan'):
+          this.drugs[i].benefit = this.checkBenefit(this.dafalganProcess(this.drugs[i]));
+          break
+
+        case("Fervex"):
+          this.drugs[i].benefit = this.checkBenefit(this.fervexProcess(this.drugs[i]));
+          break
+
+        case("Herbal Tea"):
+          this.drugs[i].benefit = this.checkBenefit(this.herbalTeaProcess(this.drugs[i]));
+          break
+
+        case("Magic Pill"):
+          continue
+
+        default:
+          this.drugs[i].benefit = this.checkBenefit(this.defautDrugProcess(this.drugs[i]));
+          break
+      }
+
+      this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
+    }
     return this.drugs;
   }
 }
