@@ -23,11 +23,7 @@ export class Pharmacy {
     return drug.benefit;
   }
 /**
-<<<<<<< HEAD
  * Modify benefit attribute for Dafalgan
-=======
- * Moddify benefit attribute for Dafalgan
->>>>>>> cc3c49ac9a03c237b780ae177e275847653db37e
  * @param {object} drug - This object contains benefit.
  * @returns {object} The modified drug with benefit.
  */
@@ -40,11 +36,7 @@ export class Pharmacy {
     return drug;
   }
 /**
-<<<<<<< HEAD
  * Modify benefit attribute for Fervex
-=======
- * Moddify benefit attribute for Fervex
->>>>>>> cc3c49ac9a03c237b780ae177e275847653db37e
  * @param {object} drug - This object contains benefit.
  * @returns {object} The modified drug with benefit.
  */
@@ -60,11 +52,7 @@ export class Pharmacy {
     return drug;
   }
 /**
-<<<<<<< HEAD
  * Modify benefit attribute for Herbal Tea.
-=======
- * Moddify benefit attribute for Herbal Tea.
->>>>>>> cc3c49ac9a03c237b780ae177e275847653db37e
  * @param {object} drug - This object contains benefit.
  * @returns {object} The modified drug with benefit.
  */
@@ -77,11 +65,7 @@ export class Pharmacy {
     return drug
   }
 /**
-<<<<<<< HEAD
  * Modify benefit attribute for default drug.
-=======
- * Moddify benefit attribute for default drug.
->>>>>>> cc3c49ac9a03c237b780ae177e275847653db37e
  * @param {object} drug This object contains benefit.
  * @returns {object} The modified drug with benefit.
  */
@@ -100,19 +84,6 @@ export class Pharmacy {
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       switch(this.drugs[i].name){
-<<<<<<< HEAD
-        case('Dafalgan'):
-          this.drugs[i].benefit = this.checkBenefit(this.dafalganProcess(this.drugs[i]));
-          break
-        case("Fervex"):
-          this.drugs[i].benefit = this.checkBenefit(this.fervexProcess(this.drugs[i]));
-          break
-        case("Herbal Tea"):
-          this.drugs[i].benefit = this.checkBenefit(this.herbalTeaProcess(this.drugs[i]));
-          break
-        case("Magic Pill"):
-          continue
-=======
 
         case('Dafalgan'):
           this.drugs[i].benefit = this.checkBenefit(this.dafalganProcess(this.drugs[i]));
@@ -129,15 +100,10 @@ export class Pharmacy {
         case("Magic Pill"):
           continue
 
->>>>>>> cc3c49ac9a03c237b780ae177e275847653db37e
         default:
           this.drugs[i].benefit = this.checkBenefit(this.defautDrugProcess(this.drugs[i]));
           break
       }
-<<<<<<< HEAD
-=======
-
->>>>>>> cc3c49ac9a03c237b780ae177e275847653db37e
       this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
     }
     return this.drugs;
