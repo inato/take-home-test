@@ -6,6 +6,11 @@ describe("Pharmacy", () => {
       [new Drug("test", 1, 2)]
     );
   });
+  it("should handle multiple drugs", () => {
+    expect(new Pharmacy([new Drug("test", 2, 3), new HerbalTea(10, 5), new Fervex(16, 40), new MagicPill(15, 40)]).updateBenefitValue()).toEqual(
+      [new Drug("test", 1, 2), new HerbalTea(9, 6), new Fervex(15, 41), new MagicPill(15, 40)]
+    );
+  });
 });
 
 describe("Drug", () => {
