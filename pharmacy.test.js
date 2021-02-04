@@ -150,7 +150,7 @@ describe("MagicPill", () => {
 describe("Fervex", () => {
   it("this.benefitAging should be equal 1", () => {
     expect(new Fervex(2, 3).benefitAging).toEqual(
-      0
+      1
     );
   });
   it("benefitAgingWhenExpired should be equal 0", () => {
