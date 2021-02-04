@@ -1,8 +1,41 @@
+const MAXIMUM_BENEFIT = 50;
+const MINIMUM_BENEFIT = 0;
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
+    this.benefitAging = -1;
+    this.benefitAgingWhenExpired = this.benefitAging * 2;
+    this.expirationDateAging = -1;
+  }
+
+  isExpired(){
+    return this.expiresIn <= 0;
+  }
+
+  validateBenefit(){
+    const benefit = (this.benefit < MINIMUM_BENEFIT) ? MINIMUM_BENEFIT : (this.benefit > MAXIMUM_BENEFIT) ? MAXIMUM_BENEFIT : this.benefit;
+    return benefit;
+  }
+
+  updateBenefit(benefitEvolution){
+    return this.benefit + benefitEvolution;
+  }
+
+  updateExpiresIn(){
+    return this.expiresIn + this.expirationDateAging;
+  }
+
+  handleAging(){
+    if(this.isExpired()){
+      updateBenefit(this.benefitAgingWhenExpired)
+    } else {
+      updateBenefit(this.benefitAging)
+    }
+    this.benefit = this.validateBenefit();
+    this.expiresIn = this.updateExpiresIn();
   }
 }
 
@@ -64,3 +97,5 @@ export class Pharmacy {
     return this.drugs;
   }
 }
+
+// export class 
