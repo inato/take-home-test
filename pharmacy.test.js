@@ -54,6 +54,26 @@ describe("Drug", () => {
       true
     );
   });
+  it("handleAging should decrease the benefit and expiresIn by one", () => {
+    const test = new Drug("test", 2, 3)
+    test.handleAging();
+    expect(test.benefit).toEqual(
+      2
+    );
+    expect(test.expiresIn).toEqual(
+      1
+    );
+  });
+  it("handleAging should decrease the benefit by two and expiresIn by one", () => {
+    const test = new Drug("test", -2, 3)
+    test.handleAging();
+    expect(test.benefit).toEqual(
+      1
+    );
+    expect(test.expiresIn).toEqual(
+      -3
+    );
+  });
 });
 
 describe("HerbalTea", () => {
@@ -102,6 +122,26 @@ describe("HerbalTea", () => {
       true
     );
   });
+  it("handleAging should increase the benefit by one and decrease expiresIn by one", () => {
+    const test = new HerbalTea(2, 3)
+    test.handleAging();
+    expect(test.benefit).toEqual(
+      4
+    );
+    expect(test.expiresIn).toEqual(
+      1
+    );
+  });
+  it("handleAging should increase the benefit by two and decrease expiresIn by one", () => {
+    const test = new HerbalTea(-2, 3)
+    test.handleAging();
+    expect(test.benefit).toEqual(
+      5
+    );
+    expect(test.expiresIn).toEqual(
+      -3
+    );
+  });
 });
 
 describe("MagicPill", () => {
@@ -143,6 +183,26 @@ describe("MagicPill", () => {
   it("should return true", () => {
     expect(new MagicPill(-2, 3).isExpired()).toEqual(
       true
+    );
+  });
+  it("handleAging should not increase the benefit and expiresIn", () => {
+    const test = new MagicPill(2, 3)
+    test.handleAging();
+    expect(test.benefit).toEqual(
+      3
+    );
+    expect(test.expiresIn).toEqual(
+      2
+    );
+  });
+  it("handleAging should not increase the benefit and expiresIn", () => {
+    const test = new MagicPill(-2, 3)
+    test.handleAging();
+    expect(test.benefit).toEqual(
+      3
+    );
+    expect(test.expiresIn).toEqual(
+      -2
     );
   });
 });
@@ -203,6 +263,46 @@ describe("Fervex", () => {
       true
     );
   });
+  it("handleAging should increase the benefit by 3 and decrease expiresIn", () => {
+    const test = new Fervex(2, 3)
+    test.handleAging();
+    expect(test.benefit).toEqual(
+      6
+    );
+    expect(test.expiresIn).toEqual(
+      1
+    );
+  });
+  it("handleAging should increase the benefit by 2 and decrease expiresIn", () => {
+    const test = new Fervex(7, 3)
+    test.handleAging();
+    expect(test.benefit).toEqual(
+      5
+    );
+    expect(test.expiresIn).toEqual(
+      6
+    );
+  });
+  it("handleAging should increase the benefit by 1 and decrease expiresIn", () => {
+    const test = new Fervex(16, 3)
+    test.handleAging();
+    expect(test.benefit).toEqual(
+      4
+    );
+    expect(test.expiresIn).toEqual(
+      15
+    );
+  });
+  it("handleAging should not increase the benefit and decrease expiresIn", () => {
+    const test = new Fervex(-2, 3)
+    test.handleAging();
+    expect(test.benefit).toEqual(
+      3
+    );
+    expect(test.expiresIn).toEqual(
+      -3
+    );
+  });
 });
 
 describe("Dafalgan", () => {
@@ -244,6 +344,26 @@ describe("Dafalgan", () => {
   it("should return true", () => {
     expect(new Dafalgan(-2, 3).isExpired()).toEqual(
       true
+    );
+  });
+  it("handleAging should decrease the benefit by two and expiresIn by one", () => {
+    const test = new Dafalgan(2, 3)
+    test.handleAging();
+    expect(test.benefit).toEqual(
+      1
+    );
+    expect(test.expiresIn).toEqual(
+      1
+    );
+  });
+  it("handleAging should decrease the benefit by four and expiresIn by one", () => {
+    const test = new Dafalgan(-2, 6)
+    test.handleAging();
+    expect(test.benefit).toEqual(
+      2
+    );
+    expect(test.expiresIn).toEqual(
+      -3
     );
   });
 });

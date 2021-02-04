@@ -30,9 +30,9 @@ export class Drug {
 
   handleAging(){
     if(this.isExpired()){
-      updateBenefit(this.benefitAgingWhenExpired)
+      this.benefit = this.updateBenefit(this.benefitAgingWhenExpired)
     } else {
-      updateBenefit(this.benefitAging)
+      this.benefit = this.updateBenefit(this.benefitAging)
     }
     this.benefit = this.validateBenefit();
     this.expiresIn = this.updateExpiresIn();
@@ -77,7 +77,7 @@ export class Fervex extends Drug {
   }
 
   handleAging(){
-    this.benefitAging = evaluateBenefitEvolution();
+    this.benefitAging = this.evaluateBenefitEvolution();
     return super.handleAging();
   }
 }
