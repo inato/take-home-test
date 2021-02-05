@@ -1,6 +1,7 @@
 # Inato Take-Home Test Specification
 
 You are a new developer in the Inato team, and your first job is to add a feature to an old existing piece of code.
+We recommend spending between 1 hour and 2 hours on the exercise. (Do more if you like 😇, do less if you think you've shown what you want😎)
 
 ## System specifications
 
@@ -25,9 +26,9 @@ We have recently signed a supplier of "Dafalgan". This requires an update to our
 
 ## Instructions
 
-- [ ] Clone this repository (do **not** fork it)
+- [ ] Fork this repository
 - [ ] Implement the required feature
-- [ ] Publish it on your GitHub (or Gitlab, or whatever...)
+- [ ] Publish it on GitHub as a pull-request
 - [ ] Send us the link and tell us approximatively how much time you spent on this assignment
 
 You are encouraged to refactor the existing code before adding your own, as you would do if this was a real task in real life. We strongly recommend that you write tests to help you during this process.
