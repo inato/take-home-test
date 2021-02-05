@@ -1,9 +1,8 @@
 import { Drug, HerbalTea, MagicPill, Fervex, Dafalgan, Pharmacy } from "./pharmacy";
 
 describe("Pharmacy", () => {
-  const pharmacy = new Pharmacy();
   it("this.drug should be an empty array", () => {
-    expect(pharmacy.drugs).toEqual([])
+    expect(new Pharmacy().drugs).toEqual([])
   });
   it("should decrease the benefit and expiresIn", () => {
     expect(new Pharmacy([new Drug({name:"test",expiresIn: 2,benefit: 3})]).updateBenefitValue()).toEqual(
