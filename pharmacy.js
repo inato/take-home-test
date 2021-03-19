@@ -5,47 +5,73 @@ class DefaultBenefitStrategy {
 
   decreaseBenefit(drug) {
     if (drug.benefit > drug.BENEFIT_MINIMUM)
-      drug.benefit -= drug.doubleRateWhenExpired(drug)
+      drug.benefit -= drug.doubleRateWhenExpired()
+  }
+
+  updateExpiration(drug) {
+    drug.expiresIn--
   }
 }
 
 class HerbalTeaStrategy {
   updateBenefit(drug) {
-    this.increaseBenefit(drug)
+    drug.benefit += this.increaseBenefit(drug)
   }
 
   increaseBenefit(drug) {
-    if (drug.benefit < drug.BENEFIT_MAXIMUM)
-      drug.benefit += drug.doubleRateWhenExpired()
+    if (drug.benefit < drug.BENEFIT_MAXIMUM) return drug.doubleRateWhenExpired()
+    return 0
+  }
+
+  updateExpiration(drug) {
+    drug.expiresIn--
   }
 }
 
 class FervexStrategy {
   updateBenefit(drug) {
-    if (drug.isExpired()) this.dropBenefitValueToZero(drug)
+    if (drug.isExpired()) this.dropBenefitValueToMinimum(drug)
     else drug.benefit += this.increaseBenefit(drug)
   }
 
   increaseBenefit(drug) {
-    if (drug.expiresIn > 10) return 1
-    if (drug.expiresIn <= 10 && drug.expiresIn > 5) return 2
     if (drug.expiresIn <= 5) return 3
-    if (drug.isExpired()) return drug.BENEFIT_MINIMUM
+    if (drug.expiresIn <= 10 && drug.expiresIn > 5) return 2
+    return 1
   }
 
-  dropBenefitValueToZero(drug) {
+  dropBenefitValueToMinimum(drug) {
     drug.benefit = drug.BENEFIT_MINIMUM
+  }
+
+  updateExpiration(drug) {
+    drug.expiresIn--
   }
 }
 
 class DafalganStrategy {
   updateBenefit(drug) {
-    this.decreaseBenefit(drug)
+    drug.benefit -= this.decreaseBenefit(drug)
   }
 
   decreaseBenefit(drug) {
+    const DAFALGAN_COEFFICIENT = 2
     if (drug.benefit > drug.BENEFIT_MINIMUM)
-      drug.benefit -= 2 * drug.doubleRateWhenExpired(drug)
+      return DAFALGAN_COEFFICIENT * drug.doubleRateWhenExpired()
+  }
+
+  updateExpiration(drug) {
+    drug.expiresIn--
+  }
+}
+
+class MagicPillStrategy {
+  updateBenefit() {
+    // do nothing
+  }
+
+  updateExpiration() {
+    // do nothing
   }
 }
 
@@ -69,7 +95,7 @@ export class Drug {
   }
 
   updateExpiration() {
-    this.expiresIn--
+    return this.strategy.updateExpiration(this)
   }
 
   isExpired() {
@@ -82,25 +108,27 @@ export class Drug {
 }
 
 export class Pharmacy {
+  drugStrategies = {
+    'Herbal Tea': new HerbalTeaStrategy(),
+    'Magic Pill': new MagicPillStrategy(),
+    Fervex: new FervexStrategy(),
+    Dafalgan: new DafalganStrategy(),
+  }
+  specialsDrugs = Object.keys(this.drugStrategies)
+
   constructor(drugs = []) {
     this.drugs = drugs
   }
 
   updatePharmacyBenefits() {
-    this.drugs.forEach((drug) => {
-      if (drug.name !== 'Magic Pill') {
-        if (drug.name === 'Herbal Tea')
-          drug.setBenefitStrategy(new HerbalTeaStrategy())
-        if (drug.name === 'Fervex')
-          drug.setBenefitStrategy(new FervexStrategy())
-        if (drug.name === 'Dafalgan')
-          drug.setBenefitStrategy(new DafalganStrategy())
-
-        drug.updateBenefit()
-        drug.updateExpiration()
-      }
-    })
-
+    this.drugs.forEach((drug) => this.updateDrug(drug))
     return this.drugs
+  }
+
+  updateDrug(drug) {
+    if (this.specialsDrugs.includes(drug.name))
+      drug.setBenefitStrategy(this.drugStrategies[drug.name])
+    drug.updateBenefit()
+    drug.updateExpiration()
   }
 }

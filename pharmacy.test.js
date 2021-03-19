@@ -2,8 +2,14 @@ import { Drug, Pharmacy } from './pharmacy'
 
 describe('Pharmacy', () => {
   function expectUpdatedPharmacy(updatedBenefitValue, expectedTestDrug) {
-    expect(updatedBenefitValue).toEqual([expectedTestDrug])
+    expect(updatedBenefitValue).toEqual(expectedTestDrug)
   }
+
+  it('should an empty pharmacy when no drugs is provided', () => {
+    const updatedBenefits = new Pharmacy().updatePharmacyBenefits()
+
+    expectUpdatedPharmacy(updatedBenefits, [])
+  })
 
   it('should decrease the benefit and expiresIn', () => {
     const testDrug = new Drug('test', 2, 3)
@@ -11,7 +17,7 @@ describe('Pharmacy', () => {
 
     const updatedBenefits = new Pharmacy([testDrug]).updatePharmacyBenefits()
 
-    expectUpdatedPharmacy(updatedBenefits, expectedTestDrug)
+    expectUpdatedPharmacy(updatedBenefits, [expectedTestDrug])
   })
 
   it('should decrease the benefit twice as fast when expired', () => {
@@ -22,7 +28,7 @@ describe('Pharmacy', () => {
       testDrug,
     ]).updatePharmacyBenefits()
 
-    expectUpdatedPharmacy(updatedBenefitValue, expectedTestDrug)
+    expectUpdatedPharmacy(updatedBenefitValue, [expectedTestDrug])
   })
 
   it('should not give negative benefit', () => {
@@ -33,7 +39,7 @@ describe('Pharmacy', () => {
       testDrug,
     ]).updatePharmacyBenefits()
 
-    expectUpdatedPharmacy(updatedBenefitValue, expectedTestDrug)
+    expectUpdatedPharmacy(updatedBenefitValue, [expectedTestDrug])
   })
 
   it.each([['Herbal Tea'], ['Fervex']])(
@@ -46,7 +52,7 @@ describe('Pharmacy', () => {
         increasingDrug,
       ]).updatePharmacyBenefits()
 
-      expectUpdatedPharmacy(updatedBenefitValue, expectedIncreasingDrug)
+      expectUpdatedPharmacy(updatedBenefitValue, [expectedIncreasingDrug])
     }
   )
 
@@ -58,7 +64,7 @@ describe('Pharmacy', () => {
       herbalTea,
     ]).updatePharmacyBenefits()
 
-    expectUpdatedPharmacy(updatedBenefitValue, expectedHerbalTea)
+    expectUpdatedPharmacy(updatedBenefitValue, [expectedHerbalTea])
   })
 
   it('should not give a benefit higher than 50', () => {
@@ -69,7 +75,7 @@ describe('Pharmacy', () => {
       herbalTea,
     ]).updatePharmacyBenefits()
 
-    expectUpdatedPharmacy(updatedBenefitValue, expectedHerbalTea)
+    expectUpdatedPharmacy(updatedBenefitValue, [expectedHerbalTea])
   })
 
   it('should never increase nor decrease values for "Magic Pill"', () => {
@@ -80,7 +86,7 @@ describe('Pharmacy', () => {
       magicPill,
     ]).updatePharmacyBenefits()
 
-    expectUpdatedPharmacy(updatedBenefitValue, expectedMagicPill)
+    expectUpdatedPharmacy(updatedBenefitValue, [expectedMagicPill])
   })
 
   it('should increase Fervex benefit by two between 10 and 5 days prior to expiration', () => {
@@ -89,7 +95,7 @@ describe('Pharmacy', () => {
 
     const updatedBenefitValue = new Pharmacy([fervex]).updatePharmacyBenefits()
 
-    expectUpdatedPharmacy(updatedBenefitValue, expectedFervex)
+    expectUpdatedPharmacy(updatedBenefitValue, [expectedFervex])
   })
 
   it('should increase Fervex benefit by three 5 days prior to expiration', () => {
@@ -98,7 +104,7 @@ describe('Pharmacy', () => {
 
     const updatedBenefitValue = new Pharmacy([fervex]).updatePharmacyBenefits()
 
-    expectUpdatedPharmacy(updatedBenefitValue, expectedFervex)
+    expectUpdatedPharmacy(updatedBenefitValue, [expectedFervex])
   })
 
   it('should drop Fervex benefit to 0 after the expiration date', () => {
@@ -107,7 +113,7 @@ describe('Pharmacy', () => {
 
     const updatedBenefitValue = new Pharmacy([fervex]).updatePharmacyBenefits()
 
-    expectUpdatedPharmacy(updatedBenefitValue, expectedFervex)
+    expectUpdatedPharmacy(updatedBenefitValue, [expectedFervex])
   })
 
   it.each([
@@ -127,7 +133,7 @@ describe('Pharmacy', () => {
         dafalgan,
       ]).updatePharmacyBenefits()
 
-      expectUpdatedPharmacy(updatedBenefitValue, expectedDafalgan)
+      expectUpdatedPharmacy(updatedBenefitValue, [expectedDafalgan])
     }
   )
 })
