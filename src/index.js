@@ -1,4 +1,6 @@
-import { Drug, Pharmacy } from "./pharmacy";
+import path from "path";
+import { Drug } from "./drug/Drug";
+import { Pharmacy } from "./pharmacy/pharmacy";
 
 import fs from "fs";
 
@@ -17,7 +19,8 @@ for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
 }
 
 /* eslint-disable no-console */
-fs.writeFile("output.txt", log, err => {
+console.log(path.join(__dirname, "../dist/output.txt"));
+fs.writeFile(path.join(__dirname, "../dist/output.txt"), log, err => {
   if (err) {
     console.log("error");
   } else {
