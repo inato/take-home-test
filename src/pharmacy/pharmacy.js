@@ -6,6 +6,10 @@ export class Pharmacy {
     for (let drug of this.drugs) {
       drug.update();
     }
+    return this.formatDrugsForExport();
+  }
+
+  formatDrugsForExport() {
     return this.drugs.map(({ name, expiresIn, benefit }) => ({
       name,
       expiresIn,
