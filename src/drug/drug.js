@@ -26,24 +26,22 @@ export class Drug {
   updateExpiresIn() {
     const { expiresInDelta } = this.config;
 
-    let d, v;
-    for (let { gte, lt, delta, value } of expiresInDelta) {
-      if (this.expiresIn >= gte && this.expiresIn < lt) {
-        if (typeof delta === "number") {
-          d = delta;
-        } else if (typeof value === "number") {
-          v = value;
-        }
-      }
-    }
-    this.expiresIn = typeof v === "number" ? v : this.expiresIn + d;
+    const { delta, value } = this.getDeltaOrValueFromRulesArray(expiresInDelta);
+    this.expiresIn = typeof value === "number" ? value : this.expiresIn + delta;
   }
 
   updateBenefit() {
     const { benefitDelta } = this.config;
 
+    const { delta, value } = this.getDeltaOrValueFromRulesArray(benefitDelta);
+    const calculatedBenefit =
+      typeof value === "number" ? value : this.benefit + delta;
+    this.benefit = this.getBenefitInRange(calculatedBenefit);
+  }
+
+  getDeltaOrValueFromRulesArray(rules) {
     let d, v;
-    for (let { gte, lt, delta, value } of benefitDelta) {
+    for (let { gte, lt, delta, value } of rules) {
       if (this.expiresIn >= gte && this.expiresIn < lt) {
         if (typeof delta === "number") {
           d = delta;
@@ -52,7 +50,6 @@ export class Drug {
         }
       }
     }
-    const calculatedBenefit = typeof v === "number" ? v : this.benefit + d;
-    this.benefit = this.getBenefitInRange(calculatedBenefit);
+    return { delta: d, value: v };
   }
 }
