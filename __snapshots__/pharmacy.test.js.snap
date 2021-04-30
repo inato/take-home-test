@@ -22,5 +22,10 @@ Array [
     "expiresIn": 15,
     "name": "Magic Pill",
   },
+  Dafalgan {
+    "benefit": 0,
+    "expiresIn": -27,
+    "name": "Dafalgan",
+  },
 ]
 `;

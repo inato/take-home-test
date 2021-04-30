@@ -1,5 +1,5 @@
 import { Pharmacy } from "./pharmacy";
-import { Doliprane, Fervex, HerbalTea, MagicPill } from "./drugs";
+import { Dafalgan, Doliprane, Fervex, HerbalTea, MagicPill } from "./drugs";
 
 describe("Pharmacy", () => {
   it("should simulate days passing by for each of the drugs", () => {
@@ -7,7 +7,8 @@ describe("Pharmacy", () => {
       new Doliprane(20, 30),
       new HerbalTea(10, 5),
       new Fervex(5, 40),
-      new MagicPill(15, 40)
+      new MagicPill(15, 40),
+      new Dafalgan(3, 20)
     ];
     const pharmacy = new Pharmacy(drugs);
 
