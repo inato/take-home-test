@@ -1,9 +1,9 @@
 export default {
-  drugNames: {
-    FERVEX: "Fervex",
-    DOLIPRANE: "Doliprane",
-    MAGIC_PILL: "Magic Pill",
-    HERBAL_TEA: "Herbal Tea"
+  drugs: {
+    FERVEX: { name: "Fervex" },
+    DOLIPRANE: { name: "Doliprane" },
+    MAGIC_PILL: { name: "Magic Pill" },
+    HERBAL_TEA: { name: "Herbal Tea" }
   },
   MAX_BENEFIT: 50,
   MIN_BENEFIT: 0

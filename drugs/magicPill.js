@@ -3,7 +3,7 @@ import config from "../config/config";
 
 export default class MagicPill extends Drug {
   constructor(expiresIn, benefit) {
-    super(config.drugNames.MAGIC_PILL, expiresIn, benefit);
+    super(config.drugs.MAGIC_PILL.name, expiresIn, benefit);
   }
 
   simulateOneDay() {

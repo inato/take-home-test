@@ -13,7 +13,7 @@ export default class Fervex extends Drug {
   }
 
   constructor(expiresIn, benefit) {
-    super(config.drugNames.FERVEX, expiresIn, benefit);
+    super(config.drugs.FERVEX.name, expiresIn, benefit);
   }
 
   simulateOneDay() {
