@@ -24,7 +24,7 @@ export default class Drug {
     const canIncrementBenefit = this.benefit < config.MAX_BENEFIT;
 
     if (canIncrementBenefit) {
-      this.benefit = this.benefit + 1;
+      this.benefit++;
     }
   }
 
@@ -32,12 +32,12 @@ export default class Drug {
     const canDecrementBenefit = this.benefit > config.MIN_BENEFIT;
 
     if (canDecrementBenefit) {
-      this.benefit = this.benefit - 1;
+      this.benefit--;
     }
   }
 
   decrementExpiresIn() {
-    this.expiresIn = this.expiresIn - 1;
+    this.expiresIn--;
   }
 
   simulateOneDay() {
