@@ -33,38 +33,38 @@ describe("Pharmacy", () => {
 
   it("should degrade benefit twice as fast once the expiration date has passed", () => {
     const expiresIn = 5;
-    const pharmacy = new Pharmacy([new Doliprane(expiresIn, 100)]);
+    const pharmacy = new Pharmacy([new FooDrug(expiresIn, 100)]);
 
     let drugs;
     for (let i = expiresIn; i > 0; i--) {
       drugs = pharmacy.updateBenefitValue();
     }
-    let doliprane = drugs[0];
+    let fooDrug = drugs[0];
 
-    expect(doliprane.benefit).toEqual(95);
-    expect(doliprane.expiresIn).toEqual(0);
+    expect(fooDrug.benefit).toEqual(95);
+    expect(fooDrug.expiresIn).toEqual(0);
 
     for (let i = 0; i < 5; i++) {
       drugs = pharmacy.updateBenefitValue();
     }
-    doliprane = drugs[0];
-    expect(doliprane.benefit).toEqual(85);
-    expect(doliprane.expiresIn).toEqual(-5);
+    fooDrug = drugs[0];
+    expect(fooDrug.benefit).toEqual(85);
+    expect(fooDrug.expiresIn).toEqual(-5);
   });
 
   it("should not decrease a drug benefit below 0", () => {
     const expiresIn = 5;
-    const pharmacy = new Pharmacy([new Fervex(expiresIn, 0)]);
+    const pharmacy = new Pharmacy([new FooDrug(expiresIn, 0)]);
 
     let drugs;
     for (let i = expiresIn; i > -5; i--) {
       drugs = pharmacy.updateBenefitValue();
     }
 
-    const fervex = drugs[0];
+    const fooDrug = drugs[0];
 
-    expect(fervex.benefit).toEqual(0);
-    expect(fervex.expiresIn).toEqual(-5);
+    expect(fooDrug.benefit).toEqual(0);
+    expect(fooDrug.expiresIn).toEqual(-5);
   });
 
   it("should not increase a drug benefit above 50", () => {
