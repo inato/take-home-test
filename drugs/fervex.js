@@ -1,8 +1,9 @@
 import Drug from "./drug";
+import config from "../config/config";
 
 export default class Fervex extends Drug {
   constructor(expiresIn, benefit) {
-    super("Fervex", expiresIn, benefit);
+    super(config.drugNames.FERVEX, expiresIn, benefit);
   }
 
   simulateOneDay() {
