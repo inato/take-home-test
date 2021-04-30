@@ -1,8 +1,14 @@
+import config from "../config/config";
+
 export default class Drug {
   constructor(name, expiresIn, benefit) {
-    const isValidBenefit = 0 <= benefit && benefit <= 50;
+    const isValidBenefit =
+      config.MIN_BENEFIT <= benefit && benefit <= config.MAX_BENEFIT;
+
     if (!isValidBenefit) {
-      throw new Error("a drug benefit value can only be between 0 and 50");
+      throw new Error(
+        `a drug benefit value can only be between ${config.MIN_BENEFIT} and ${config.MAX_BENEFIT}`
+      );
     }
 
     this.name = name;
@@ -15,7 +21,7 @@ export default class Drug {
   }
 
   incrementBenefit() {
-    const canIncrementBenefit = this.benefit < 50;
+    const canIncrementBenefit = this.benefit < config.MAX_BENEFIT;
 
     if (canIncrementBenefit) {
       this.benefit = this.benefit + 1;
@@ -23,7 +29,7 @@ export default class Drug {
   }
 
   decrementBenefit() {
-    const canDecrementBenefit = this.benefit > 0;
+    const canDecrementBenefit = this.benefit > config.MIN_BENEFIT;
 
     if (canDecrementBenefit) {
       this.benefit = this.benefit - 1;
