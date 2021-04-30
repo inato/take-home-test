@@ -31,9 +31,27 @@ describe("Pharmacy", () => {
     expect(result).toMatchSnapshot();
   });
 
+  it("should not be possible to create a drug with less than 0 or more than 50 benefit", () => {
+    try {
+      new FooDrug(10, -1);
+    } catch (error) {
+      expect(error.message).toEqual(
+        "a drug benefit value can only be between 0 and 50"
+      );
+    }
+
+    try {
+      new FooDrug(10, 51);
+    } catch (error) {
+      expect(error.message).toEqual(
+        "a drug benefit value can only be between 0 and 50"
+      );
+    }
+  });
+
   it("should degrade benefit twice as fast once the expiration date has passed", () => {
     const expiresIn = 5;
-    const pharmacy = new Pharmacy([new FooDrug(expiresIn, 100)]);
+    const pharmacy = new Pharmacy([new FooDrug(expiresIn, 50)]);
 
     let drugs;
     for (let i = expiresIn; i > 0; i--) {
@@ -41,14 +59,14 @@ describe("Pharmacy", () => {
     }
     let fooDrug = drugs[0];
 
-    expect(fooDrug.benefit).toEqual(95);
+    expect(fooDrug.benefit).toEqual(45);
     expect(fooDrug.expiresIn).toEqual(0);
 
     for (let i = 0; i < 5; i++) {
       drugs = pharmacy.updateBenefitValue();
     }
     fooDrug = drugs[0];
-    expect(fooDrug.benefit).toEqual(85);
+    expect(fooDrug.benefit).toEqual(35);
     expect(fooDrug.expiresIn).toEqual(-5);
   });
 
@@ -144,7 +162,7 @@ describe("Pharmacy", () => {
   });
 
   it("should set fervex benefit to 0 when it expires", () => {
-    const pharmacy = new Pharmacy([new Fervex(0, 100)]);
+    const pharmacy = new Pharmacy([new Fervex(0, 50)]);
     const fervex = pharmacy.updateBenefitValue()[0];
 
     expect(fervex.benefit).toEqual(0);
