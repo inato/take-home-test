@@ -1,4 +1,4 @@
-import Drug from "./abstractDrug";
+import Drug from "./drug";
 
 export default class Fervex extends Drug {
   constructor(expiresIn, benefit) {
