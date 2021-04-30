@@ -23,7 +23,11 @@ export default class Drug {
   }
 
   decrementBenefit() {
-    this.benefit = this.benefit - 1;
+    const canDecrementBenefit = this.benefit > 0;
+
+    if (canDecrementBenefit) {
+      this.benefit = this.benefit - 1;
+    }
   }
 
   decrementExpiresIn() {
