@@ -1,19 +1,25 @@
 import { Pharmacy } from "./pharmacy";
-import { Drug } from "./drugs";
+import { Doliprane, Drug, Fervex, HerbalTea, MagicPill } from "./drugs";
+
+class FooDrug extends Drug {
+  constructor(expiresIn, benefit) {
+    super("FooDrug", expiresIn, benefit);
+  }
+}
 
 describe("Pharmacy", () => {
   it("should decrease the benefit and expiresIn at the end of each day", () => {
-    expect(new Pharmacy([new Drug("test", 2, 3)]).updateBenefitValue()).toEqual(
-      [new Drug("test", 1, 2)]
-    );
+    expect(new Pharmacy([new FooDrug(2, 3)]).updateBenefitValue()).toEqual([
+      new FooDrug(1, 2)
+    ]);
   });
 
   it("should match snapshot", () => {
     const drugs = [
-      new Drug("Doliprane", 20, 30),
-      new Drug("Herbal Tea", 10, 5),
-      new Drug("Fervex", 5, 40),
-      new Drug("Magic Pill", 15, 40)
+      new Doliprane(20, 30),
+      new HerbalTea(10, 5),
+      new Fervex(5, 40),
+      new MagicPill(15, 40)
     ];
     const pharmacy = new Pharmacy(drugs);
 
@@ -27,7 +33,7 @@ describe("Pharmacy", () => {
 
   it("should degrade benefit twice as fast once the expiration date has passed", () => {
     const expiresIn = 5;
-    const pharmacy = new Pharmacy([new Drug("Doliprane", expiresIn, 100)]);
+    const pharmacy = new Pharmacy([new Doliprane(expiresIn, 100)]);
 
     let drugs;
     for (let i = expiresIn; i > 0; i--) {
@@ -48,7 +54,7 @@ describe("Pharmacy", () => {
 
   it("should not decrease a drug benefit below 0", () => {
     const expiresIn = 5;
-    const pharmacy = new Pharmacy([new Drug("Fervex", expiresIn, 0)]);
+    const pharmacy = new Pharmacy([new Fervex(expiresIn, 0)]);
 
     let drugs;
     for (let i = expiresIn; i > -5; i--) {
@@ -64,7 +70,7 @@ describe("Pharmacy", () => {
   it("should not increase a drug benefit above 50", () => {
     const expiresIn = 5;
     const benefit = 50;
-    const pharmacy = new Pharmacy([new Drug("Herbal Tea", expiresIn, benefit)]);
+    const pharmacy = new Pharmacy([new HerbalTea(expiresIn, benefit)]);
 
     let drugs;
     for (let i = expiresIn; i > 0; i--) {
@@ -77,7 +83,7 @@ describe("Pharmacy", () => {
 
   it("should increase herbal tea benefit twice as fast after the expiration date", () => {
     const expiresIn = 5;
-    const pharmacy = new Pharmacy([new Drug("Herbal Tea", expiresIn, 0)]);
+    const pharmacy = new Pharmacy([new HerbalTea(expiresIn, 0)]);
 
     let drugs;
     for (let i = expiresIn; i > -5; i--) {
@@ -93,7 +99,7 @@ describe("Pharmacy", () => {
   it("should not make magic pill expire", () => {
     const expiresIn = 123;
     const benefit = 10;
-    const pharmacy = new Pharmacy([new Drug("Magic Pill", expiresIn, benefit)]);
+    const pharmacy = new Pharmacy([new MagicPill(expiresIn, benefit)]);
 
     const drugs = pharmacy.updateBenefitValue();
     const magicPill = drugs[0];
@@ -103,7 +109,7 @@ describe("Pharmacy", () => {
   });
 
   it("should not decrease magic pill benefit", () => {
-    const pharmacy = new Pharmacy([new Drug("Magic Pill", 5, 10)]);
+    const pharmacy = new Pharmacy([new MagicPill(5, 10)]);
     pharmacy.updateBenefitValue();
     const magicPill = pharmacy.updateBenefitValue()[0];
     expect(magicPill.benefit).toEqual(10);
@@ -111,7 +117,7 @@ describe("Pharmacy", () => {
 
   it("should increase fervex benefit by 2 when there are 10 days or less remaining", () => {
     const expiresIn = 10;
-    const pharmacy = new Pharmacy([new Drug("Fervex", expiresIn, 0)]);
+    const pharmacy = new Pharmacy([new Fervex(expiresIn, 0)]);
 
     let drugs;
     for (let i = expiresIn; i > 5; i--) {
@@ -125,7 +131,7 @@ describe("Pharmacy", () => {
 
   it("should increase fervex benefit by 3 when there are 5 days or less remaining", () => {
     const expiresIn = 5;
-    const pharmacy = new Pharmacy([new Drug("Fervex", expiresIn, 0)]);
+    const pharmacy = new Pharmacy([new Fervex(expiresIn, 0)]);
 
     let drugs;
     for (let i = expiresIn; i > 0; i--) {
@@ -138,7 +144,7 @@ describe("Pharmacy", () => {
   });
 
   it("should set fervex benefit to 0 when it expires", () => {
-    const pharmacy = new Pharmacy([new Drug("Fervex", 0, 100)]);
+    const pharmacy = new Pharmacy([new Fervex(0, 100)]);
     const fervex = pharmacy.updateBenefitValue()[0];
 
     expect(fervex.benefit).toEqual(0);
