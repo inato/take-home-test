@@ -20,19 +20,23 @@ export default class Drug {
     return this.expiresIn < 0;
   }
 
-  incrementBenefit() {
-    const canIncrementBenefit = this.benefit < config.MAX_BENEFIT;
+  incrementBenefit(nbToIncrement = 1) {
+    const canIncrement = this.benefit + nbToIncrement < config.MAX_BENEFIT;
 
-    if (canIncrementBenefit) {
-      this.benefit++;
+    if (canIncrement) {
+      this.benefit = this.benefit + nbToIncrement;
+    } else {
+      this.benefit = config.MAX_BENEFIT;
     }
   }
 
-  decrementBenefit() {
-    const canDecrementBenefit = this.benefit > config.MIN_BENEFIT;
+  decrementBenefit(nbToDecrement = 1) {
+    const canDecrement = this.benefit - nbToDecrement > config.MIN_BENEFIT;
 
-    if (canDecrementBenefit) {
-      this.benefit--;
+    if (canDecrement) {
+      this.benefit = this.benefit - nbToDecrement;
+    } else {
+      this.benefit = config.MIN_BENEFIT;
     }
   }
 

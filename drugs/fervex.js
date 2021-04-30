@@ -2,6 +2,16 @@ import Drug from "./drug";
 import config from "../config/config";
 
 export default class Fervex extends Drug {
+  _computeBenefitIncrement() {
+    if (this.expiresIn < 5) {
+      return 3;
+    } else if (this.expiresIn < 10) {
+      return 2;
+    }
+
+    return 1;
+  }
+
   constructor(expiresIn, benefit) {
     super(config.drugNames.FERVEX, expiresIn, benefit);
   }
@@ -12,15 +22,9 @@ export default class Fervex extends Drug {
     if (this.hasExpired) {
       this.benefit = 0;
     } else {
-      this.incrementBenefit();
+      const increment = this._computeBenefitIncrement();
 
-      if (this.expiresIn < 10) {
-        this.incrementBenefit();
-      }
-
-      if (this.expiresIn < 5) {
-        this.incrementBenefit();
-      }
+      this.incrementBenefit(increment);
     }
   }
 }
