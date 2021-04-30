@@ -29,5 +29,9 @@ export default class Drug {
   simulateOneDay() {
     this.decrementExpiresIn();
     this.decrementBenefit();
+
+    if (this.hasExpired) {
+      this.decrementBenefit();
+    }
   }
 }
