@@ -12,7 +12,8 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
-    "start": "babel-node index.js"
+    "start": "babel-node index.js",
+    "watch": "jest --watchAll"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
@@ -26,6 +27,7 @@
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^2.6.2",
     "jest": "24.8.0",
+    "node": "12.10",
     "prettier": "^1.14.3",
     "regenerator-runtime": "^0.12.1"
   }
