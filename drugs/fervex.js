@@ -7,6 +7,11 @@ export default class Fervex extends Drug {
 
   simulateOneDay() {
     this.decrementExpiresIn();
-    this.incrementBenefit();
+
+    if (this.hasExpired) {
+      this.benefit = 0;
+    } else {
+      this.incrementBenefit();
+    }
   }
 }
