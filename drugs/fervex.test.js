@@ -1,6 +1,12 @@
 import { Fervex } from ".";
 
 describe("Fervex drug", () => {
+  it("should have Fervex as name", () => {
+    const fervex = new Fervex(0, 0);
+
+    expect(fervex.name).toEqual("Fervex");
+  });
+
   it("should increase fervex benefit by 2 when there are 10 days or less remaining", () => {
     const expiresIn = 10;
     const fervex = new Fervex(expiresIn, 0);

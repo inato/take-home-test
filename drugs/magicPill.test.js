@@ -1,6 +1,12 @@
 import { MagicPill } from ".";
 
 describe("MagicPill drug", () => {
+  it("should have Magic Pill as name", () => {
+    const magicPill = new MagicPill(0, 0);
+
+    expect(magicPill.name).toEqual("Magic Pill");
+  });
+
   it("should not make magic pill expire", () => {
     const expiresIn = 123;
     const benefit = 10;
