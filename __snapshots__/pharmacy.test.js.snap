@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Pharmacy should match snapshot 1`] = `
+exports[`Pharmacy should simulate days passing by for each of the drugs 1`] = `
 Array [
   Doliprane {
     "benefit": 0,

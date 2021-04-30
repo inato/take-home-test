@@ -2,7 +2,7 @@ import { Pharmacy } from "./pharmacy";
 import { Doliprane, Fervex, HerbalTea, MagicPill } from "./drugs";
 
 describe("Pharmacy", () => {
-  it("should match snapshot", () => {
+  it("should simulate days passing by for each of the drugs", () => {
     const drugs = [
       new Doliprane(20, 30),
       new HerbalTea(10, 5),
