@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pharmacy should match snapshot 1`] = `
+Array [
+  Drug {
+    "benefit": 0,
+    "expiresIn": -10,
+    "name": "Doliprane",
+  },
+  Drug {
+    "benefit": 50,
+    "expiresIn": -20,
+    "name": "Herbal Tea",
+  },
+  Drug {
+    "benefit": 0,
+    "expiresIn": -25,
+    "name": "Fervex",
+  },
+  Drug {
+    "benefit": 40,
+    "expiresIn": 15,
+    "name": "Magic Pill",
+  },
+]
+`;
