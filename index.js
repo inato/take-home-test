@@ -1,4 +1,5 @@
-import { Drug, Pharmacy } from "./pharmacy";
+import { Pharmacy } from "./pharmacy";
+import { Drug } from "./drugs";
 
 import fs from "fs";
 
