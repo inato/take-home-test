@@ -1,4 +1,3 @@
-export { default as Drug } from "./abstractDrug";
 export { default as HerbalTea } from "./herbalTea";
 export { default as Doliprane } from "./doliprane";
 export { default as Fervex } from "./fervex";
