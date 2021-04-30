@@ -9,4 +9,21 @@ export default class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+
+  incrementBenefit() {
+    this.benefit = this.benefit + 1;
+  }
+
+  decrementBenefit() {
+    this.benefit = this.benefit - 1;
+  }
+
+  decrementExpiresIn() {
+    this.expiresIn = this.expiresIn - 1;
+  }
+
+  simulateOneDay() {
+    this.decrementExpiresIn();
+    this.decrementBenefit();
+  }
 }
