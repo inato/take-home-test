@@ -15,7 +15,11 @@ export default class Drug {
   }
 
   incrementBenefit() {
-    this.benefit = this.benefit + 1;
+    const canIncrementBenefit = this.benefit < 50;
+
+    if (canIncrementBenefit) {
+      this.benefit = this.benefit + 1;
+    }
   }
 
   decrementBenefit() {
