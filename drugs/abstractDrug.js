@@ -10,6 +10,10 @@ export default class Drug {
     this.benefit = benefit;
   }
 
+  get hasExpired() {
+    return this.expiresIn < 0;
+  }
+
   incrementBenefit() {
     this.benefit = this.benefit + 1;
   }

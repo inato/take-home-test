@@ -8,5 +8,9 @@ export default class HerbalTea extends Drug {
   simulateOneDay() {
     this.decrementExpiresIn();
     this.incrementBenefit();
+
+    if (this.hasExpired) {
+      this.incrementBenefit();
+    }
   }
 }
