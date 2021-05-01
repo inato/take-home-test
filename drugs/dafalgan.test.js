@@ -9,28 +9,35 @@ class FooDrug extends Drug {
 
 describe("Dafalgan drug", () => {
   it("should have Dafalgan as name", () => {
-    const doliprane = new Dafalgan(3, 20);
+    const dafalgan = new Dafalgan(3, 20);
 
-    expect(doliprane.name).toEqual("Dafalgan");
+    expect(dafalgan.name).toEqual("Dafalgan");
   });
 
   it("should degrade in benefit twice as fast a normal drugs", () => {
-    const doliprane = new Dafalgan(3, 20);
-    const fooDrug = new FooDrug(3, 20);
+    const defaultBenefit = 50;
+    const dafalgan = new Dafalgan(3, defaultBenefit);
+    const fooDrug = new FooDrug(3, defaultBenefit);
 
-    for (let daysToSimulate = 0; daysToSimulate < 3; daysToSimulate++) {
-      doliprane.simulateOneDay();
+    for (let daysSimulated = 0; daysSimulated < 3; daysSimulated++) {
+      dafalgan.simulateOneDay();
       fooDrug.simulateOneDay();
     }
 
-    expect(fooDrug.benefit / doliprane.benefit).toEqual(2);
+    let degradeRatio =
+      (defaultBenefit - dafalgan.benefit) / (defaultBenefit - fooDrug.benefit);
+
+    expect(degradeRatio).toEqual(2);
 
     //when expired normal drug benefit already degrade twice as fast
-    for (let daysToSimulate = 0; daysToSimulate < 5; daysToSimulate++) {
-      doliprane.simulateOneDay();
+    for (let daysSimulated = 0; daysSimulated < 5; daysSimulated++) {
+      dafalgan.simulateOneDay();
       fooDrug.simulateOneDay();
     }
 
-    expect(fooDrug.benefit / doliprane.benefit).toEqual(2);
+    degradeRatio =
+      (defaultBenefit - dafalgan.benefit) / (defaultBenefit - fooDrug.benefit);
+
+    expect(degradeRatio).toEqual(2);
   });
 });
