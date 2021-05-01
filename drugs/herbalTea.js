@@ -6,8 +6,7 @@ export default class HerbalTea extends Drug {
     super(config.drugs.HERBAL_TEA.name, expiresIn, benefit);
   }
 
-  simulateOneDay() {
-    this.decrementExpiresIn();
+  computeBenefitAfterOneday() {
     this.incrementBenefit();
 
     if (this.hasExpired) {

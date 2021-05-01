@@ -16,9 +16,7 @@ export default class Fervex extends Drug {
     super(config.drugs.FERVEX.name, expiresIn, benefit);
   }
 
-  simulateOneDay() {
-    this.decrementExpiresIn();
-
+  computeBenefitAfterOneday() {
     if (this.hasExpired) {
       this.benefit = 0;
     } else {
