@@ -7,7 +7,10 @@ export default class Dafalgan extends Drug {
   }
 
   computeBenefitAfterOneday() {
-    super.computeBenefitAfterOneday();
-    super.computeBenefitAfterOneday();
+    let i = 0;
+    while (i < config.drugs.DAFALGAN.benefitRatioComparedToNormalDrugs) {
+      super.computeBenefitAfterOneday();
+      i++;
+    }
   }
 }

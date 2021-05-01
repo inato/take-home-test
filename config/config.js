@@ -4,7 +4,7 @@ export default {
     DOLIPRANE: { name: "Doliprane" },
     MAGIC_PILL: { name: "Magic Pill" },
     HERBAL_TEA: { name: "Herbal Tea" },
-    DAFALGAN: { name: "Dafalgan" }
+    DAFALGAN: { name: "Dafalgan", benefitRatioComparedToNormalDrugs: 2 }
   },
   MAX_BENEFIT: 50,
   MIN_BENEFIT: 0
