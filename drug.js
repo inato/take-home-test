@@ -3,6 +3,16 @@ export class Drug {
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
+    // Factory method
+    if (name === "Herbal Tea") {
+      Object.assign(this, HerbalTea);
+    } else if (name === "Fervex") {
+      Object.assign(this, Fervex);
+    } else if (name === "Fervex") {
+      Object.assign(this, Fervex);
+    } else if (name === "Magic Pill") {
+      Object.assign(this, MagicPill);
+    }
   }
 
   expiresOneDay() {
@@ -36,24 +46,24 @@ export class Drug {
 
 // "Herbal Tea" actually increases in Benefit the older it gets.
 // Benefit increases twice as fast after the expiration date.
-export class HerbalTea extends Drug {
+const HerbalTea = {
   calcNewBenefit() {
     const expirationFactor = this.expiresIn < 0 ? 2 : 1;
     this.benefit = this.benefit + expirationFactor;
   }
-}
+};
 
 // "Magic Pill" never expires nor decreases in Benefit.
-export class MagicPill extends Drug {
-  expiresOneDay() {}
+const MagicPill = {
+  expiresOneDay() {},
   calcNewBenefit() {}
-}
+};
 
 // "Fervex", like Herbal Tea, increases in Benefit as its expiration date approaches.
 // Benefit increases by 2 when there are 10 days or less
 // and by 3 when there are 5 days or less but Benefit drops to 0 after the expiration date.
-export class Fervex extends Drug {
-  expiresOneDay() {}
+const Fervex = {
+  expiresOneDay() {},
   calcNewBenefit() {
     if (this.expiresIn <= 0) {
       this.benefit = 0;
@@ -65,4 +75,4 @@ export class Fervex extends Drug {
       this.benefit = this.benefit + 1;
     }
   }
-}
+};

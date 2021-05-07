@@ -1,4 +1,4 @@
-import { Drug, HerbalTea, MagicPill, Fervex } from "./drug";
+import { Drug } from "./drug";
 
 describe("Drug", () => {
   it("At the end of each day our system lowers both values for every drug", () => {
@@ -31,7 +31,7 @@ describe("Drug", () => {
 
   it(`"Herbal Tea" actually increases in Benefit the older it gets. Benefit increases twice as fast after the expiration date.`, () => {
     // Arrange
-    const testDrug = new HerbalTea("Herbal Tea", 0, 4);
+    const testDrug = new Drug("Herbal Tea", 0, 4);
     // Act
     testDrug.updateBenefitValue();
     // Assert
@@ -40,7 +40,7 @@ describe("Drug", () => {
 
   it(`The Benefit of an item is never negative`, () => {
     // Arrange
-    const testDrug = new HerbalTea("Herbal Tea", 0, 50);
+    const testDrug = new Drug("Herbal Tea", 0, 50);
     // Act
     testDrug.updateBenefitValue();
     // Assert
@@ -49,7 +49,7 @@ describe("Drug", () => {
 
   it(`"Magic Pill" never expires nor decreases in Benefit.`, () => {
     // Arrange
-    const testDrug = new MagicPill("Magic Pill", 5, 5);
+    const testDrug = new Drug("Magic Pill", 5, 5);
     // Act
     testDrug.updateBenefitValue();
     // Assert
@@ -60,7 +60,7 @@ describe("Drug", () => {
   describe("Fervex", () => {
     it(`Benefit increases by 2 when there are 10 days or less`, () => {
       // Arrange
-      const testDrug = new Fervex("Fervex", 9, 5);
+      const testDrug = new Drug("Fervex", 9, 5);
       // Act
       testDrug.updateBenefitValue();
       // Assert
@@ -69,7 +69,7 @@ describe("Drug", () => {
 
     it(`Benefit increases by 3 when there are 5 days or less`, () => {
       // Arrange
-      const testDrug = new Fervex("Fervex", 5, 5);
+      const testDrug = new Drug("Fervex", 5, 5);
       // Act
       testDrug.updateBenefitValue();
       // Assert
@@ -78,7 +78,7 @@ describe("Drug", () => {
 
     it(`Benefit drops to 0 after the expiration date.`, () => {
       // Arrange
-      const testDrug = new Fervex("Fervex", 0, 5);
+      const testDrug = new Drug("Fervex", 0, 5);
       // Act
       testDrug.updateBenefitValue();
       // Assert
