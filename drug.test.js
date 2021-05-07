@@ -29,32 +29,36 @@ describe("Drug", () => {
     expect(testDrug.benefit).toBe(2);
   });
 
-  it(`"Herbal Tea" actually increases in Benefit the older it gets. Benefit increases twice as fast after the expiration date.`, () => {
-    // Arrange
-    const testDrug = new Drug("Herbal Tea", 0, 4);
-    // Act
-    testDrug.updateBenefitValue();
-    // Assert
-    expect(testDrug.benefit).toBe(6);
+  describe('"Herbal Tea"', () => {
+    it(`"Herbal Tea" actually increases in Benefit the older it gets. Benefit increases twice as fast after the expiration date.`, () => {
+      // Arrange
+      const testDrug = new Drug("Herbal Tea", 0, 4);
+      // Act
+      testDrug.updateBenefitValue();
+      // Assert
+      expect(testDrug.benefit).toBe(6);
+    });
+
+    it(`The Benefit of an item is never negative`, () => {
+      // Arrange
+      const testDrug = new Drug("Herbal Tea", 0, 50);
+      // Act
+      testDrug.updateBenefitValue();
+      // Assert
+      expect(testDrug.benefit).toBe(50);
+    });
   });
 
-  it(`The Benefit of an item is never negative`, () => {
-    // Arrange
-    const testDrug = new Drug("Herbal Tea", 0, 50);
-    // Act
-    testDrug.updateBenefitValue();
-    // Assert
-    expect(testDrug.benefit).toBe(50);
-  });
-
-  it(`"Magic Pill" never expires nor decreases in Benefit.`, () => {
-    // Arrange
-    const testDrug = new Drug("Magic Pill", 5, 5);
-    // Act
-    testDrug.updateBenefitValue();
-    // Assert
-    expect(testDrug.benefit).toBe(5);
-    expect(testDrug.expiresIn).toBe(5);
+  describe('"Magic Pill"', () => {
+    it(`"Magic Pill" never expires nor decreases in Benefit.`, () => {
+      // Arrange
+      const testDrug = new Drug("Magic Pill", 5, 5);
+      // Act
+      testDrug.updateBenefitValue();
+      // Assert
+      expect(testDrug.benefit).toBe(5);
+      expect(testDrug.expiresIn).toBe(5);
+    });
   });
 
   describe("Fervex", () => {
@@ -83,6 +87,17 @@ describe("Drug", () => {
       testDrug.updateBenefitValue();
       // Assert
       expect(testDrug.benefit).toBe(0);
+    });
+  });
+
+  describe("Dafalgan", () => {
+    it(`"Dafalgan" degrades in Benefit twice as fast as normal drugs.`, () => {
+      // Arrange
+      const testDrug = new Drug("Dafalgan", 0, 5);
+      // Act
+      testDrug.updateBenefitValue();
+      // Assert
+      expect(testDrug.benefit).toBe(1);
     });
   });
 });
