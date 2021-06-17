@@ -2,6 +2,10 @@ env:
   jest: true
   node: true
 parser: babel-eslint
+plugins:
+ - '@typescript-eslint'
+ - prettier
 extends:
   - eslint:recommended
   - plugin:prettier/recommended
+  - prettier/@typescript-eslint
