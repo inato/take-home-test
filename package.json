@@ -12,7 +12,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest --no-cache --runInBand --verbose --env=node && tsc --noEmit",
-    "start": "babel-node index.js",
+    "start": "ts-node index.ts",
     "format": "prettier --write --config .prettierrc '**/*.ts'"
   },
   "devDependencies": {
@@ -27,16 +27,17 @@
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^2.6.2",
     "prettier": "^1.14.3",
-    "regenerator-runtime": "^0.12.1"
-  },
-  "dependencies": {
+    "regenerator-runtime": "^0.12.1",
     "@types/jest": "^26.0.23",
     "@types/lodash": "^4.14.170",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",
-    "jest": "^27.0.4",
-    "lodash": "^4.17.21",
     "ts-jest": "^27.0.3",
+    "jest": "^27.0.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "ts-node": "^10.0.0",
     "typescript": "^4.3.2"
   },
   "jest": {

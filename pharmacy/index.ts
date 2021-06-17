@@ -22,7 +22,7 @@ export class Pharmacy {
   private alterBenefit({ name, benefit, expiresIn }: DrugModel): number {
     if (name !== DrugNames.HERBAL_TEA && name !== DrugNames.FERVEX && benefit > 0) {
       benefit = this.decrementNormalDrugBenefit(name, benefit);
-    } else if ([DrugNames.HERBAL_TEA, DrugNames.FERVEX].includes(name as DrugNames) && benefit < this.benefitMaxDays) {
+    } else if ([DrugNames.HERBAL_TEA, DrugNames.FERVEX].includes(name) && benefit < this.benefitMaxDays) {
       benefit = benefit + 1;
       benefit = this.incrementFervexBenefitIfLessThan11DaysLeft({ name, benefit, expiresIn });
     }

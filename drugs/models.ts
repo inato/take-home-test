@@ -1,5 +1,5 @@
 export interface Drug {
-  name: string;
+  name: DrugNames;
   expiresIn: number;
   benefit: number;
 }
