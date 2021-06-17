@@ -5,7 +5,7 @@ import { Pharmacy } from '.';
 
 describe('Pharmarcy', () => {
   describe('::updateBenefitValue', () => {
-    describe('when 9  days have passed from 50 days', () => {
+    describe('when 9 days have passed from 50 days', () => {
       let pharmacy: Pharmacy;
       let result: Drug[];
 
@@ -15,6 +15,7 @@ describe('Pharmarcy', () => {
           drugFactory(DrugNames.HERBAL_TEA, 50, 10),
           drugFactory(DrugNames.FERVEX, 50, 10),
           drugFactory(DrugNames.MAGIC_PILL, 50, 10),
+          drugFactory(DrugNames.DAFALGAN, 50, 10),
         ]);
 
         pharmacy.updateBenefitValue();
@@ -51,6 +52,11 @@ Array [
     "expiresIn": 50,
     "name": "Magic Pill",
   },
+  Object {
+    "benefit": 0,
+    "expiresIn": 41,
+    "name": "Dafalgan",
+  },
 ]
 `);
       });
@@ -66,6 +72,7 @@ Array [
           drugFactory(DrugNames.HERBAL_TEA, 2, 25),
           drugFactory(DrugNames.FERVEX, 2, 25),
           drugFactory(DrugNames.MAGIC_PILL, 2, 25),
+          drugFactory(DrugNames.DAFALGAN, 2, 25),
         ]);
 
         result = pharmacy.updateBenefitValue();
@@ -94,6 +101,11 @@ Array [
     "expiresIn": 2,
     "name": "Magic Pill",
   },
+  Object {
+    "benefit": 23,
+    "expiresIn": 1,
+    "name": "Dafalgan",
+  },
 ]
 `);
       });
@@ -109,6 +121,7 @@ Array [
           drugFactory(DrugNames.HERBAL_TEA, 9, 25),
           drugFactory(DrugNames.FERVEX, 9, 25),
           drugFactory(DrugNames.MAGIC_PILL, 9, 25),
+          drugFactory(DrugNames.DAFALGAN, 9, 25),
         ]);
 
         result = pharmacy.updateBenefitValue();
@@ -137,6 +150,11 @@ Array [
     "expiresIn": 9,
     "name": "Magic Pill",
   },
+  Object {
+    "benefit": 23,
+    "expiresIn": 8,
+    "name": "Dafalgan",
+  },
 ]
 `);
       });
@@ -152,6 +170,7 @@ Array [
           drugFactory(DrugNames.HERBAL_TEA, 0, 25),
           drugFactory(DrugNames.FERVEX, 0, 25),
           drugFactory(DrugNames.MAGIC_PILL, 0, 25),
+          drugFactory(DrugNames.DAFALGAN, 0, 25),
         ]);
 
         result = pharmacy.updateBenefitValue();
@@ -180,6 +199,11 @@ Array [
     "expiresIn": 0,
     "name": "Magic Pill",
   },
+  Object {
+    "benefit": 21,
+    "expiresIn": -1,
+    "name": "Dafalgan",
+  },
 ]
 `);
       });
@@ -195,6 +219,7 @@ Array [
           drugFactory(DrugNames.HERBAL_TEA, 30, 25),
           drugFactory(DrugNames.FERVEX, 30, 25),
           drugFactory(DrugNames.MAGIC_PILL, 30, 25),
+          drugFactory(DrugNames.DAFALGAN, 30, 25),
         ]);
 
         result = pharmacy.updateBenefitValue();
@@ -222,6 +247,11 @@ Array [
     "benefit": 25,
     "expiresIn": 30,
     "name": "Magic Pill",
+  },
+  Object {
+    "benefit": 23,
+    "expiresIn": 29,
+    "name": "Dafalgan",
   },
 ]
 `);
