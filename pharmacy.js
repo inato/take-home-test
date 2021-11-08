@@ -78,19 +78,31 @@ export class Pharmacy {
   }
 
   updateBenefitValue() {
-    const DEFAULT_BENEFIT_DECAY = -1;
+    const DEFAULT_BENEFIT_RATE = -1;
+    const DEFAULT_EXPIRE_RATE = -1;
     return this.drugs.map(drug => {
       let { name, expiresIn, benefit } = drug;
-      let benefitCoefficient = DEFAULT_BENEFIT_DECAY;
+
+      let benefitCoefficient = DEFAULT_BENEFIT_RATE;
+      let expireCoefficient = DEFAULT_EXPIRE_RATE;
 
       if (name === "Herbal Tea") {
         benefitCoefficient = 1;
       }
+
       // Once the expiration date has passed, Benefit degrades twice as fast.
       if (expiresIn < 0)
-        return this.updateBenefitSafely(drug, -1, benefitCoefficient * 2);
+        return this.updateBenefitSafely(
+          drug,
+          expireCoefficient,
+          benefitCoefficient * 2
+        );
       // If the expiration date hasn't passed, Benefit degrades twice as fast.
-      return this.updateBenefitSafely(drug, -1, benefitCoefficient);
+      return this.updateBenefitSafely(
+        drug,
+        expireCoefficient,
+        benefitCoefficient
+      );
     });
   }
 }
