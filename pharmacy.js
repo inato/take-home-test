@@ -90,6 +90,11 @@ export class Pharmacy {
         benefitCoefficient = 1;
       }
 
+      if(name === "Magic Pill") {
+        benefitCoefficient = 0;
+        expireCoefficient = 0;
+      }
+
       // Once the expiration date has passed, Benefit degrades twice as fast.
       if (expiresIn < 0)
         return this.updateBenefitSafely(
