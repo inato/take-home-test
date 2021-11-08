@@ -108,6 +108,10 @@ export class Pharmacy {
         }
       }
 
+      if (name === "Dafalgan") {
+        benefitCoefficient = -2;
+      }
+
       // Once the expiration date has passed, Benefit degrades twice as fast.
       if (expiresIn <= 0) {
         // exception for Fervex that drop to zero
