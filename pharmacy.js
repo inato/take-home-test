@@ -90,7 +90,7 @@ export class Pharmacy {
         benefitCoefficient = 1;
       }
 
-      if(name === "Magic Pill") {
+      if (name === "Magic Pill") {
         benefitCoefficient = 0;
         expireCoefficient = 0;
       }
