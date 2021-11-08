@@ -81,9 +81,10 @@ export class Pharmacy {
     const DEFAULT_BENEFIT_DECAY = -1;
     return this.drugs.map(drug => {
       let { name, expiresIn, benefit } = drug;
-      const benefitCoefficient = DEFAULT_BENEFIT_DECAY;
+      let benefitCoefficient = DEFAULT_BENEFIT_DECAY;
+
       // Once the expiration date has passed, Benefit degrades twice as fast.
-      if (expiresIn < 0) return this.updateBenefitSafely(drug, -1, benefitCoefficient);
+      if (expiresIn < 0) return this.updateBenefitSafely(drug, -1, benefitCoefficient * 2);
       // If the expiration date hasn't passed, Benefit degrades twice as fast.
       return this.updateBenefitSafely(drug, -1, benefitCoefficient);
     });
