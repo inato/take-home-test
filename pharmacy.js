@@ -83,8 +83,12 @@ export class Pharmacy {
       let { name, expiresIn, benefit } = drug;
       let benefitCoefficient = DEFAULT_BENEFIT_DECAY;
 
+      if (name === "Herbal Tea") {
+        benefitCoefficient = 1;
+      }
       // Once the expiration date has passed, Benefit degrades twice as fast.
-      if (expiresIn < 0) return this.updateBenefitSafely(drug, -1, benefitCoefficient * 2);
+      if (expiresIn < 0)
+        return this.updateBenefitSafely(drug, -1, benefitCoefficient * 2);
       // If the expiration date hasn't passed, Benefit degrades twice as fast.
       return this.updateBenefitSafely(drug, -1, benefitCoefficient);
     });
