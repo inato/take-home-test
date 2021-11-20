@@ -16,12 +16,10 @@ export class Drug {
   }
 
   handleDegradation() {
-    if (this.isDegradable() && !this.isMagic()) {
-      if (this.benefit > 0) {
+    if (this.benefit > 0 && this.isDegradable() && !this.isMagic()) {
         this.name === "Dafalgan"
           ? this.decreaseBenefitBy(2)
           : this.decreaseBenefitBy(1);
-      }
     }
   }
 
@@ -41,10 +39,7 @@ export class Drug {
       if (this.name == "Herbal Tea") this.increaseBenefitBy(1);
       if (this.name == "Fervex") this.decreaseBenefitBy(this.benefit);
 
-      if (this.benefit > 0 && this.isDegradable()) {
-        if (this.name == "Dafalgan") this.decreaseBenefitBy(2);
-        if (!this.isMagic()) this.decreaseBenefitBy(1);
-      }
+      this.handleDegradation();
     }
   }
 
