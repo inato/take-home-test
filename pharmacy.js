@@ -38,63 +38,48 @@ export class Pharmacy {
   constructor(drugs = []) {
     this.drugs = drugs;
   }
+
+  handleDegradation(drug) {
+    if (drug.isDegradable() && !drug.isMagic()) {
+      if (drug.benefit > 0) {
+        drug.name === "Dafalgan"
+          ? drug.decreaseBenefitBy(2)
+          : drug.decreaseBenefitBy(1);
+      }
+    }
+  }
+
+  handleImprovement(drug) {
+    if (!drug.isDegradable() && drug.isNotMaximumBenefit()) {
+      drug.increaseBenefitBy(1);
+
+      if (drug.name === "Fervex") {
+        drug.expiresIn < 11 && drug.increaseBenefitBy(1);
+        drug.expiresIn < 6 && drug.increaseBenefitBy(1);
+      }
+    }
+  }
+
+  handleExpiry(drug) {
+    if (drug.expiresIn < 0) {
+      if (drug.name == "Herbal Tea") drug.increaseBenefitBy(1);
+      if (drug.name == "Fervex") drug.decreaseBenefitBy(drug.benefit);
+
+      if (drug.benefit > 0 && drug.isDegradable()) {
+        if (drug.name == "Dafalgan") drug.decreaseBenefitBy(2);
+        if (!drug.isMagic()) drug.decreaseBenefitBy(1);
+      }
+    }
+  }
+
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
       const currentDrug = this.drugs[i];
 
-      if (currentDrug.isDegradable()) {
-        if (currentDrug.benefit > 0) {
-          if (!currentDrug.isMagic()) {
-            if(currentDrug.name === "Dafalgan") {
-              currentDrug.decreaseBenefitBy(2);
-            }
-            else {
-              currentDrug.decreaseBenefitBy(1)
-            }
-          }
-        }
-      } else {
-        if (currentDrug.isNotMaximumBenefit()) {
-          currentDrug.increaseBenefitBy(1);
-          if (currentDrug.name == "Fervex") {
-            if (currentDrug.expiresIn < 11) {
-              if (currentDrug.isNotMaximumBenefit()) {
-                currentDrug.increaseBenefitBy(1);
-              }
-            }
-            if (currentDrug.expiresIn < 6) {
-              if (currentDrug.isNotMaximumBenefit()) {
-                currentDrug.increaseBenefitBy(1);
-              }
-            }
-          }
-        }
-      }
-      if (!currentDrug.isMagic()) {
-        currentDrug.decreaseLifeSpan();
-      }
-      if (currentDrug.expiresIn < 0) {
-        if (currentDrug.name != "Herbal Tea") {
-          if (currentDrug.name != "Fervex") {
-            if (currentDrug.benefit > 0) {
-              if (!currentDrug.isMagic()) {
-                if(currentDrug.name === "Dafalgan") {
-                  currentDrug.decreaseBenefitBy(2);
-                }
-                else {
-                  currentDrug.decreaseBenefitBy(1)
-                }
-              }
-            }
-          } else {
-            currentDrug.decreaseBenefitBy(currentDrug.benefit);
-          }
-        } else {
-          if (currentDrug.isNotMaximumBenefit()) {
-            currentDrug.increaseBenefitBy(1);
-          }
-        }
-      }
+      this.handleDegradation(currentDrug);
+      this.handleImprovement(currentDrug);
+      currentDrug.decreaseLifeSpan();
+      this.handleExpiry(currentDrug);
     }
 
     return this.drugs;
