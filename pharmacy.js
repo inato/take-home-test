@@ -4,6 +4,34 @@ export class Drug {
     this.expiresIn = expiresIn;
     this.benefit = benefit;
   }
+
+  decreaseBenefitBy(rate) {
+    const newBenefit = this.benefit - rate;
+    this.benefit = newBenefit >= 0 ? newBenefit : 0;
+  }
+
+  increaseBenefitBy(rate) {
+    const newBenefit = this.benefit + rate;
+    this.benefit = newBenefit <= 50 ? newBenefit : 50;
+  }
+
+  decreaseLifeSpan() {
+    if (!this.isMagic()) {
+      this.expiresIn -= 1;
+    }
+  }
+
+  isNotMaximumBenefit() {
+    return this.benefit < 50;
+  }
+
+  isDegradable() {
+    return this.name != "Herbal Tea" && this.name != "Fervex";
+  }
+
+  isMagic() {
+    return this.name == "Magic Pill";
+  }
 }
 
 export class Pharmacy {
