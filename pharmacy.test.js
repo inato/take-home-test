@@ -19,6 +19,24 @@ describe("Pharmacy", () => {
     ).toEqual([new Drug("Herbal Tea", 0, 2)]);
   });
 
+  it("should decrease the benefit twice as normal", () => {
+    expect(
+      new Pharmacy([
+        new Drug("normal", 2, 2),
+        new Drug("Dafalgan", 2, 2)
+      ]).updateBenefitValue()
+    ).toEqual([new Drug("normal", 1, 1), new Drug("Dafalgan", 1, 0)]);
+  });
+
+  it("should decrease the benefit twice as normal after expiry", () => {
+    expect(
+      new Pharmacy([
+        new Drug("normal", 0, 2),
+        new Drug("Dafalgan", 0, 4)
+      ]).updateBenefitValue()
+    ).toEqual([new Drug("normal", -1, 0), new Drug("Dafalgan", -1, 0)]);
+  });
+
   it("should increase benefit twice after expiresIn", () => {
     expect(
       new Pharmacy([new Drug("Herbal Tea", 0, 1)]).updateBenefitValue()
