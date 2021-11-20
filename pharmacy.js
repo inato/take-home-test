@@ -44,7 +44,7 @@ export class Pharmacy {
 
       if (currentDrug.isDegradable()) {
         if (currentDrug.benefit > 0) {
-          if (currentDrug.isMagic()) {
+          if (!currentDrug.isMagic()) {
             if(currentDrug.name === "Dafalgan") {
               currentDrug.decreaseBenefitBy(2);
             }
@@ -77,7 +77,7 @@ export class Pharmacy {
         if (currentDrug.name != "Herbal Tea") {
           if (currentDrug.name != "Fervex") {
             if (currentDrug.benefit > 0) {
-              if (currentDrug.isMagic()) {
+              if (!currentDrug.isMagic()) {
                 if(currentDrug.name === "Dafalgan") {
                   currentDrug.decreaseBenefitBy(2);
                 }
