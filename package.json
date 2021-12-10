@@ -13,6 +13,7 @@
     "lint": "eslint .",
     "test": "jest --verbose --coverage",
     "start": "babel-node index.js",
+    "prepare": "husky install",
     "prettier": "prettier --write *.js"
   },
   "devDependencies": {
@@ -28,6 +29,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "27.4.4",
     "prettier": "^2.5.1",
-    "regenerator-runtime": "^0.12.1"
+    "regenerator-runtime": "^0.12.1",
+    "husky": "^7.0.0"
   }
 }
