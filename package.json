@@ -11,7 +11,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "jest",
+    "test": "jest --verbose --coverage",
     "start": "babel-node index.js"
   },
   "devDependencies": {
