@@ -16,7 +16,8 @@
     "prepare": "husky install",
     "prettier": "prettier --write *.js",
     "commitlint": "commitlint -eV",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "jsdoc": "jsdoc *.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
@@ -33,6 +34,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.0",
     "jest": "27.4.4",
+    "jsdoc": "^3.6.7",
     "lint-staged": "^12.1.2",
     "prettier": "^2.5.1",
     "regenerator-runtime": "^0.12.1"

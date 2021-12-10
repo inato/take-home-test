@@ -48,3 +48,13 @@ yarn start
 ```sh
 docker-compose up
 ```
+
+## Documentation
+
+To generate this project documentation, run
+
+```
+yarn jsdoc
+```
+
+The documentation will be generated in the `out` directory.

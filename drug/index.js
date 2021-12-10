@@ -3,9 +3,19 @@ import { Dafalgan } from "./dafalgan";
 import { Fervex } from "./fervex";
 import { HerbalTea } from "./herbal-tea";
 import { MagicPill } from "./magic-pill";
+
+/**
+ * Class representing a Drug
+ */
 export class Drug {
   #drug;
 
+  /**
+   * Creates a Drug
+   * @param {string} name The name of the drug
+   * @param {number} expiresIn The expiry date of the drug. A whole number
+   * @param {number} benefit The benefit of the drug. A whole number between 0 and 50 included
+   */
   constructor(name, expiresIn, benefit) {
     // TODO: Ask people in charge of other piece of the software if we can add these type checks ;)
     // if (typeof name !== "string" || name === "") {
@@ -57,6 +67,9 @@ export class Drug {
     return this.#drug.expiresIn;
   }
 
+  /**
+   * Updates the benefit and expiresIn properties of the drug
+   */
   updateBenefitValueAndExpiration() {
     this.#drug.updateBenefitValue();
     this.#drug.updateExpiration();
