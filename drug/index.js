@@ -7,6 +7,21 @@ export class Drug {
   #drug;
 
   constructor(name, expiresIn, benefit) {
+    // TODO: Ask people in charge of other piece of the software if we can add these type checks ;)
+    // if (typeof name !== "string" || name === "") {
+    //   throw new TypeError("name parameter must be a non empty string");
+    // }
+
+    // if (parseInt(expiresIn) !== expiresIn) {
+    //   throw new TypeError("expiresIn parameter must be a whole number");
+    // }
+
+    // if (parseInt(benefit) !== benefit || benefit < 0 || benefit > 50) {
+    //   throw new TypeError(
+    //     "benefit parameter must be a whole number between 0 and 50 included"
+    //   );
+    // }
+
     this.name = name;
     switch (name) {
       case "Magic Pill":
