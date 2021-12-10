@@ -12,7 +12,8 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest --verbose --coverage",
-    "start": "babel-node index.js"
+    "start": "babel-node index.js",
+    "prettier": "prettier --write *.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
