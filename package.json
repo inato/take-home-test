@@ -14,7 +14,8 @@
     "test": "jest --verbose --coverage",
     "start": "babel-node index.js",
     "prepare": "husky install",
-    "prettier": "prettier --write *.js"
+    "prettier": "prettier --write *.js",
+    "commitlint": "commitlint -eV"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
@@ -22,14 +23,16 @@
     "@babel/eslint-parser": "^7.16.3",
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^27.4.4",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.0",
     "jest": "27.4.4",
     "prettier": "^2.5.1",
-    "regenerator-runtime": "^0.12.1",
-    "husky": "^7.0.0"
+    "regenerator-runtime": "^0.12.1"
   }
 }
