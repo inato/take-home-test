@@ -17,16 +17,16 @@
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
+    "@babel/eslint-parser": "^7.16.3",
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^9.0.0",
-    "babel-jest": "^23.6.0",
-    "eslint": "^5.6.0",
-    "eslint-config-prettier": "^3.1.0",
-    "eslint-plugin-prettier": "^2.6.2",
-    "jest": "24.8.0",
-    "prettier": "^1.14.3",
+    "babel-jest": "^27.4.4",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "27.4.4",
+    "prettier": "^2.5.1",
     "regenerator-runtime": "^0.12.1"
   }
 }
