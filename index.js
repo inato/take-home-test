@@ -1,5 +1,5 @@
 import { EOL } from "os";
-import fs from "fs";
+import { writeFile } from "fs";
 
 import { Drug } from "./drug";
 import { Pharmacy } from "./pharmacy";
@@ -12,14 +12,12 @@ const drugs = [
 ];
 const trial = new Pharmacy(drugs);
 
-const log = [];
-
-for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  log.push(JSON.stringify(trial.updateBenefitValue()));
-}
+const log = Array.from({ length: 30 }).map(() =>
+  JSON.stringify(trial.updateBenefitValue())
+);
 
 /* eslint-disable no-console */
-fs.writeFile("output.txt", log.join(`,${EOL}`), (err) => {
+writeFile("output.txt", log.join(`,${EOL}`), (err) => {
   if (err) {
     console.log("error");
   } else {
