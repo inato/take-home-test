@@ -26,14 +26,15 @@ We have recently signed a supplier of "Dafalgan". This requires an update to our
 
 ## Instructions
 
-- [ ] Fork this repository
+- [x] Fork this repository
 - [ ] Implement the required feature
 - [ ] Publish it on GitHub as a pull-request
 - [ ] Send us the link and tell us approximatively how much time you spent on this assignment
 
-You are encouraged to refactor the existing code before adding your own, as you would do if this was a real task in real life. We strongly recommend that you write tests to help you during this process.
+- [x] You are encouraged to refactor the existing code before adding your own, as you would do if this was a real task in real life. 
+- [x] We strongly recommend that you write tests to help you during this process.
 
-Feel free to make any changes to the `updateBenefitValue` method implementation and add any new code as long as everything still works correctly. However, do not break the public API of the `Drug` and `Pharmacy` classes, as those are used by other pieces of the software (you can add new methods though).
+- [x] Feel free to make any changes to the `updateBenefitValue` method implementation and add any new code as long as everything still works correctly. However, do not break the public API of the `Drug` and `Pharmacy` classes, as those are used by other pieces of the software (you can add new methods though).
 
 Please commit as frequently as possible to make the review easier.
 
@@ -48,3 +49,8 @@ yarn start
 ```sh
 docker-compose up
 ```
+
+TODO: 
+- Tests should be refactored to reduce test file size using
+[https://jestjs.io/fr/docs/api#testeachtablename-fn-timeout]()
+- Drug behavior should be managed in each drug class

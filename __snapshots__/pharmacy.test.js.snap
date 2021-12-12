@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pharmacy Basics should decrease the benefit and expiresIn 1`] = `
+Array [
+  Drug {
+    "benefit": 2,
+    "expiresIn": 1,
+    "name": "test",
+  },
+]
+`;
