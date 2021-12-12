@@ -9,6 +9,11 @@ export const getDecreaseBenefit = ({benefit, name}) => {
         benefit--;
     }
 
+    // Dafalgan Decrease twice
+    if(name === 'Dafalgan') {
+        benefit--;
+    }
+
     return benefit;
 };
 
@@ -47,6 +52,9 @@ export const getFervexExpiryBenefit = ({benefit, name}) => name === 'Fervex' ? 0
 
 export const getDecreaseExpiryBenefit = ({benefit, name}) => {
     name !== 'Magic Pill' && benefit--;
+
+    // Dafalgan decrease twice
+    name === 'Dafalgan' && benefit--;
 
     return benefit;
 };

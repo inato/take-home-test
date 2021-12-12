@@ -14,6 +14,7 @@ describe('Pharmacy', () => {
                 [new Drug('test', -1, 1)]
             );
         });
+
         it('should not change benefit', () => {
             expect(new Pharmacy([new Drug('test', 5, 0)]).updateBenefitValue()).toEqual(
                 [new Drug('test', 4, 0)]
@@ -95,6 +96,7 @@ describe('Pharmacy', () => {
                     [new Drug('Dafalgan', -1, 0)]
                 );
             });
+
             it('should not change benefit', () => {
                 expect(new Pharmacy([new Drug('Dafalgan', 5, 0)]).updateBenefitValue()).toEqual(
                     [new Drug('Dafalgan', 4, 0)]

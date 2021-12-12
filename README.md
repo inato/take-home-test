@@ -27,7 +27,7 @@ We have recently signed a supplier of "Dafalgan". This requires an update to our
 ## Instructions
 
 - [x] Fork this repository
-- [ ] Implement the required feature
+- [x] Implement the required feature
 - [ ] Publish it on GitHub as a pull-request
 - [ ] Send us the link and tell us approximatively how much time you spent on this assignment
 
