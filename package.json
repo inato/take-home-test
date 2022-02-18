@@ -7,7 +7,7 @@
   "private": true,
   "engines": {
     "yarn": ">=1.7.0",
-    "node": "=12.x"
+    "node": "=16.x"
   },
   "scripts": {
     "lint": "eslint .",
@@ -21,8 +21,8 @@
     "@babel/preset-env": "^7.1.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
-    "babel-jest": "^23.6.0",
-    "eslint": "^5.6.0",
+    "babel-jest": "^27.5.1",
+    "eslint": "^8.9.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-plugin-prettier": "^2.6.2",
     "jest": "24.8.0",
