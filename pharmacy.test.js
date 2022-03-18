@@ -77,9 +77,15 @@ describe("Pharmacy", () => {
   });
 
   // Dafalgan tests
-  it("Dafalgan should degrades in Benefit twice as fast as normal drugs", () => {
+  it("Dafalgan should degrades in benefit twice as fast as normal drugs", () => {
     expect(
       new Pharmacy([new Drug("Dafalgan", 2, 3)]).updateBenefitValue()
     ).toEqual([new Drug("Dafalgan", 1, 1)]);
+  });
+
+  it("Dafalgan benefit should never be negative", () => {
+    expect(
+      new Pharmacy([new Drug("Dafalgan", -1, 0)]).updateBenefitValue()
+    ).toEqual([new Drug("Dafalgan", -2, 0)]);
   });
 });
