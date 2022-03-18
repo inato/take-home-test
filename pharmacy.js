@@ -1,8 +1,65 @@
+const MAX_BENEFIT= 50;
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
     this.expiresIn = expiresIn;
     this.benefit = benefit;
+  }
+  isBenefitEditable(){
+    return this.benefit < MAX_BENEFIT
+  }
+  increaseBenefit(){
+    if (this.isBenefitEditable()) {
+      this.benefit = this.benefit + 1;
+    }
+  }
+  updateBenefitValue(){
+    if ( // default Benefit degrades
+      this.name != "Herbal Tea" &&
+      this.name != "Fervex"
+    ) {
+      if (this.benefit > 0) { // The Benefit of an item is never negative
+        if (this.name != "Magic Pill") { // "Magic Pill" never decreases in Benefit
+          this.benefit = this.benefit - 1;
+        }
+      }
+    } else { // "Herbal Tea" || "Fervex"
+      if (this.isBenefitEditable()){ // The Benefit of an item is never more than 50
+        this.benefit = this.benefit + 1;
+        if (this.name == "Fervex") { // "Fervex" custom case
+          if (this.expiresIn < 11) {
+            this.increaseBenefit();
+          }
+          if (this.expiresIn < 6) {
+            this.increaseBenefit();
+          }
+        }
+      }
+    }
+
+    // expiration go down by one day
+    if (this.name != "Magic Pill") { //for this case : "Magic Pill" never expires, default expiresIn -= 1
+      this.expiresIn = this.expiresIn - 1;
+    }
+
+    // verify expiration
+    if (this.expiresIn < 0) { // if drug expired
+      if (this.name != "Herbal Tea") { 
+        if (this.name != "Fervex") {
+          if (this.benefit > 0) {
+            if (this.name != "Magic Pill") { // "Magic Pill" never decreases in Benefit. else decrease benefit when expired
+              this.benefit = this.benefit - 1;
+            }
+          }
+        } else { // "Fervex":
+          this.benefit = 0;
+        }
+      } else {
+        // "Herbal Tea" actually increases in Benefit the older it gets
+        this.increaseBenefit();
+      }
+    }
   }
 }
 
@@ -12,54 +69,7 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
-      if ( // default Benefit degrades
-        this.drugs[i].name != "Herbal Tea" &&
-        this.drugs[i].name != "Fervex"
-      ) {
-        if (this.drugs[i].benefit > 0) { // The Benefit of an item is never negative
-          if (this.drugs[i].name != "Magic Pill") { // "Magic Pill" never decreases in Benefit
-            this.drugs[i].benefit = this.drugs[i].benefit - 1;
-          }
-        }
-      } else { // "Herbal Tea" || "Fervex"
-        if (this.drugs[i].benefit < 50) { // The Benefit of an item is never more than 50
-          this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          if (this.drugs[i].name == "Fervex") { // "Fervex" custom case
-            if (this.drugs[i].expiresIn < 11) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-            if (this.drugs[i].expiresIn < 6) {
-              if (this.drugs[i].benefit < 50) {
-                this.drugs[i].benefit = this.drugs[i].benefit + 1;
-              }
-            }
-          }
-        }
-      }
-
-      if (this.drugs[i].name != "Magic Pill") { //for this case : "Magic Pill" never expires, default expiresIn -= 1
-        this.drugs[i].expiresIn = this.drugs[i].expiresIn - 1;
-      }
-      if (this.drugs[i].expiresIn < 0) { // if drug expired
-        if (this.drugs[i].name != "Herbal Tea") { 
-          if (this.drugs[i].name != "Fervex") {
-            if (this.drugs[i].benefit > 0) {
-              if (this.drugs[i].name != "Magic Pill") { // "Magic Pill" never decreases in Benefit. else decrease benefit when expired
-                this.drugs[i].benefit = this.drugs[i].benefit - 1;
-              }
-            }
-          } else { // "Fervex":
-            this.drugs[i].benefit =
-              this.drugs[i].benefit - this.drugs[i].benefit;
-          }
-        } else {
-          if (this.drugs[i].benefit < 50) { // "Herbal Tea" actually increases in Benefit the older it gets
-            this.drugs[i].benefit = this.drugs[i].benefit + 1;
-          }
-        }
-      }
+      this.drugs[i].updateBenefitValue()
     }
 
     return this.drugs;
