@@ -49,7 +49,7 @@ const DrugsRules = {
     }
 
     return { expiresIn, benefit };
-  },
+  }
 };
 export class Drug {
   constructor(name, expiresIn, benefit) {
