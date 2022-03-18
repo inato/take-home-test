@@ -6,7 +6,7 @@ export class Drug {
   }
 }
 
-export const DurgsList = {
+export const durgsList = {
   // Default drug
   _default: (expiresIn, benefit) => {
     if (benefit > 0) {
@@ -51,7 +51,7 @@ export const DurgsList = {
     }
     return { expiresIn, benefit };
   },
-  // Dafalgan Pill drug
+  // Dafalgan drug
   Dafalgan: (expiresIn, benefit) => {
     expiresIn = expiresIn - 1;
     if (benefit > 0) benefit = benefit - 2;
@@ -65,11 +65,11 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
-      const drugName = Object.keys(DurgsList).includes(this.drugs[i].name)
+      const drugName = Object.keys(durgsList).includes(this.drugs[i].name)
         ? this.drugs[i].name
         : "_default";
 
-      const { expiresIn, benefit } = DurgsList[drugName](
+      const { expiresIn, benefit } = durgsList[drugName](
         this.drugs[i].expiresIn,
         this.drugs[i].benefit
       );
