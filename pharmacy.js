@@ -53,13 +53,8 @@ export const DurgsList = {
   },
   // Dafalgan Pill drug
   Dafalgan: (expiresIn, benefit) => {
-    if (expiresIn < 0) {
-      benefit = 0;
-      expiresIn = -2;
-    } else {
-      benefit = 1;
-      expiresIn = 1;
-    }
+    expiresIn = expiresIn - 1;
+    if (benefit > 0) benefit = benefit - 2;
     return { expiresIn, benefit };
   },
 };
