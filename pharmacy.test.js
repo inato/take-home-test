@@ -80,13 +80,13 @@ describe("Pharmacy", () => {
   );
 });
 
- it("Dafalgan benefit should degrades twice fast as normal drug", () => {
+ it("Dafalgan benefit should degrades twice fast as normal drug before expiration", () => {
   expect(new Pharmacy([new Drug("Dafalgan", 2, 6)]).updateBenefitValue()).toEqual(
     [new Drug("Dafalgan", 1, 4)]
   );
 });
 
- it("Dafalgan benefit should degrades four times fast as normal drug after expiration", () => {
+ it("Dafalgan benefit should degrades four times fast after expiration", () => {
   expect(new Pharmacy([new Drug("Dafalgan", 0, 6)]).updateBenefitValue()).toEqual(
     [new Drug("Dafalgan", -1, 2)]
   );

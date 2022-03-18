@@ -49,7 +49,20 @@ const DrugsRules = {
     }
 
     return { expiresIn, benefit };
-  }
+  },
+  Dafalgan: (expiresIn_, benefit_) =>{
+    let benefit = benefit_;
+    let expiresIn = expiresIn_;
+
+    if (benefit > 0) {
+      benefit -= 2;
+    }
+    expiresIn -= 1;
+    if (expiresIn < 0 && benefit > 0) {
+      benefit -= 2;
+    }
+    return { expiresIn, benefit };
+  },
 };
 export class Drug {
   constructor(name, expiresIn, benefit) {
