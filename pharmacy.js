@@ -59,11 +59,11 @@ export class Pharmacy {
   }
   updateBenefitValue() {
     for (var i = 0; i < this.drugs.length; i++) {
-      const drugName = Object.keys(Durgs).includes(this.drugs[i].name)
+      const drugName = Object.keys(DurgsList).includes(this.drugs[i].name)
         ? this.drugs[i].name
         : "_default";
 
-      const { expiresIn, benefit } = Durgs[drugName](
+      const { expiresIn, benefit } = DurgsList[drugName](
         this.drugs[i].expiresIn,
         this.drugs[i].benefit
       );
