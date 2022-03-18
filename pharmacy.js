@@ -47,8 +47,8 @@ const DrugsRules = {
 
     return { expiresIn, benefit };
   },
-  "Magic Pill": (expiresIn_, benefit_) => {
-    return { expiresIn: expiresIn_, benefit: benefit_ };
+  "Magic Pill": (expiresIn, benefit) => {
+    return { expiresIn, benefit };
   },
 
   Dafalgan: (expiresIn_, benefit_) =>{
