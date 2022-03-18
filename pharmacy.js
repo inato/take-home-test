@@ -5,11 +5,11 @@ const DrugsRules = {
     let benefit = benefit_;
     let expiresIn = expiresIn_;
 
-    if (benefit > 0) {
+    if (benefit) {
       benefit -= 1;
     }
     expiresIn -= 1;
-    if (expiresIn < 0 && benefit > 0) {
+    if (expiresIn < 0 && benefit) {
       benefit -= 1;
     }
     return { expiresIn, benefit };
@@ -26,9 +26,6 @@ const DrugsRules = {
       benefit += 1;
     }
     return { expiresIn, benefit };
-  },
-  "Magic Pill": (expiresIn_, benefit_) => {
-    return { expiresIn: expiresIn_, benefit: benefit_ };
   },
   Fervex: (expiresIn_, benefit_) => {
     let benefit = benefit_;
@@ -50,20 +47,25 @@ const DrugsRules = {
 
     return { expiresIn, benefit };
   },
+  "Magic Pill": (expiresIn_, benefit_) => {
+    return { expiresIn: expiresIn_, benefit: benefit_ };
+  },
+
   Dafalgan: (expiresIn_, benefit_) =>{
     let benefit = benefit_;
     let expiresIn = expiresIn_;
 
-    if (benefit > 0) {
+    if (benefit) {
       benefit -= 2;
     }
     expiresIn -= 1;
-    if (expiresIn < 0 && benefit > 0) {
+    if (expiresIn < 0 && benefit) {
       benefit -= 2;
     }
     return { expiresIn, benefit };
   },
 };
+
 export class Drug {
   constructor(name, expiresIn, benefit) {
     this.name = name;
