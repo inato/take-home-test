@@ -9,10 +9,8 @@ export class Drug {
 export const durgsList = {
   // Default drug
   _default: (expiresIn, benefit) => {
-    if (benefit > 0) {
-      if (expiresIn < 0) benefit = benefit - 2;
-      else benefit = benefit - 1;
-    }
+    if (expiresIn < 0) benefit = benefit > 1 ? benefit - 2 : 0;
+    else benefit = benefit > 0 ? benefit - 1 : 0;
     expiresIn = expiresIn - 1;
     return { expiresIn, benefit };
   },
@@ -53,8 +51,9 @@ export const durgsList = {
   },
   // Dafalgan drug
   Dafalgan: (expiresIn, benefit) => {
+    if (expiresIn < 0) benefit = benefit > 3 ? benefit - 4 : 0;
+    else benefit = benefit > 1 ? benefit - 2 : 0;
     expiresIn = expiresIn - 1;
-    if (benefit > 0) benefit = benefit - 2;
     return { expiresIn, benefit };
   },
 };
