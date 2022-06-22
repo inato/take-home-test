@@ -38,7 +38,7 @@ Please commit as frequently as possible to make the review easier.
 
 ## Test
 
-To make sure that you will not break anything in the existing code, we added a log of the simulation in the _output.txt_ file. Make sure that your code is able to generate a file with identical content. You can generate a new file by running one of the following commands:
+To make sure that you will not break anything in the existing code, we added the result of the simulation in the _output.json_ file. Make sure that your code is able to generate a file with identical content. You can generate a new file by running one of the following commands:
 
 ```sh
 yarn start
