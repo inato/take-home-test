@@ -36,6 +36,8 @@ Feel free to make any changes to the `updateBenefitValue` method implementation 
 
 Please commit as frequently as possible to make the review easier.
 
+We expect you to spend no more than 5 hours on this assignment. We value the quality of the end result, not how much time you have spent on it.
+
 ## Test
 
 To make sure that you will not break anything in the existing code, we added the result of the simulation in the _output.json_ file. Make sure that your code is able to generate a file with identical content. You can generate a new file by running one of the following commands:
