@@ -1,10 +1,14 @@
-FROM node:12.10.0-alpine
+FROM node:22.14.0-slim
+
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable pnpm
 
 WORKDIR /usr/src
 
 COPY package.json /usr/src/package.json
-RUN yarn install
+RUN pnpm i
 
 COPY . /usr/src/
 
-CMD ["yarn", "start"]
+CMD ["pnpm", "start"]
