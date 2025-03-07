@@ -39,7 +39,7 @@ importers:
         specifier: ^10.1.1
         version: 10.1.1(eslint@9.21.0)
       eslint-plugin-prettier:
-        specifier: ^5.0.0
+        specifier: ^5.2.3
         version: 5.2.3(eslint-config-prettier@10.1.1(eslint@9.21.0))(eslint@9.21.0)(prettier@3.5.3)
       globals:
         specifier: ^16.0.0
